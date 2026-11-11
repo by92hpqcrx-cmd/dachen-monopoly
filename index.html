@@ -235,6 +235,11 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
   .board-column .player-area{min-height:76px}
   .board-column .player-list{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+
+/* 玩家棋子：始終顯示在最前景，不受格子高亮覆蓋。 */
+#tokenLayer{z-index:100!important;overflow:visible;isolation:isolate}
+#tokenLayer .token{filter:drop-shadow(1px 4px 4px rgba(49,30,16,.60))}
+#tokenLayer .token .outline{stroke:#884b22;stroke-width:4;fill:#fff4bb}
 </style>
 </head>
 <body>
@@ -364,9 +369,24 @@ function createBoard(){
 }
 const svgNS='http://www.w3.org/2000/svg';
 function svg(tag,attrs){const node=document.createElementNS(svgNS,tag);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,String(v)));return node;}
-function drawTokens(){const layer=$('tokenLayer');layer.replaceChildren();players.forEach((p,i)=>{
- const c=cells[p.pos],ox=[-12,12,-12,12][i],oy=[-15,-15,15,15][i],x=c.x+ox,y=c.y+oy;
- const g=svg('g',{class:'token'}),outer=svg('circle',{class:'outline',cx:x,cy:y,r:22}),clip=svg('clipPath',{id:'clipP'+i}),clp=svg('circle',{cx:x,cy:y,r:19});clip.append(clp);const image=svg('image',{x:x-20,y:y-20,width:40,height:40,href:AVATARS[i],'clip-path':'url(#clipP'+i+')'});const badge=svg('circle',{cx:x+15,cy:y+16,r:9,fill:PALETTE[i],stroke:'white','stroke-width':2});const num=svg('text',{x:x+15,y:y+16,'font-size':13,'font-weight':'1000',fill:'white','text-anchor':'middle','dominant-baseline':'central'});num.textContent=i+1;g.append(clip,outer,image,badge,num);layer.append(g);
+function drawTokens(){
+ const layer=$('tokenLayer');layer.replaceChildren();
+ // 棋子直徑 70px（1200×850 地圖座標），大於約 60×47px 的一般格子。
+ // 人物圖層在所有路線、格子、建築與裝飾之上。
+ players.forEach((p,i)=>{
+  const c=cells[p.pos],offsetX=[-18,18,-18,18][i],offsetY=[-18,-18,18,18][i];
+  const x=c.x+offsetX,y=c.y+offsetY,r=35,portraitR=31;
+  const g=svg('g',{class:'token',role:'img','aria-label':`${p.name}棋子`});
+  const clip=svg('clipPath',{id:'clipP'+i});
+  clip.append(svg('circle',{cx:x,cy:y,r:portraitR}));
+  const outer=svg('circle',{class:'outline',cx:x,cy:y,r});
+  const image=svg('image',{x:x-portraitR,y:y-portraitR,width:portraitR*2,height:portraitR*2,href:AVATARS[i],'clip-path':'url(#clipP'+i+')'});
+  const rim=svg('circle',{cx:x,cy:y,r:portraitR,fill:'none',stroke:'#ffffff','stroke-width':3});
+  const badge=svg('circle',{cx:x+25,cy:y+24,r:12,fill:PALETTE[i],stroke:'white','stroke-width':3});
+  const num=svg('text',{x:x+25,y:y+24,'font-size':16,'font-weight':'1000',fill:'white','text-anchor':'middle','dominant-baseline':'central'});
+  num.textContent=i+1;
+  g.append(clip,outer,image,rim,badge,num);
+  layer.append(g);
  });
  document.querySelectorAll('.cell.active').forEach(el=>el.classList.remove('active'));
  if(players.length)$('cell-'+players[turn].pos)?.classList.add('active');
