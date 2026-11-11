@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#55bbec">
-<title>大成國小｜校園大富翁・全新互動版</title>
+<title>大成國小｜校園大富翁・童趣卡通完整版</title>
 <style>
 :root{--ink:#463123;--gold:#f6b632;--border:#9c6723;--red:#e85160;--blue:#2098e2;--green:#168e64;--cream:#fff8e5}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:'Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;background:linear-gradient(180deg,#79d8ff 0,#ccf5ff 52%,#f6fded 100%);min-height:100vh}
@@ -56,6 +56,185 @@ button,select,input{font:inherit}button{cursor:pointer}button:disabled{cursor:no
 @media(max-width:1180px){.main-layout{grid-template-columns:minmax(0,1fr) 310px}.left-panel{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.mascots{display:none}.board-shell{grid-column:1;grid-row:2}.right-panel{grid-column:2;grid-row:2}.map{min-width:790px}.rules-list{grid-template-columns:1fr 1fr;gap:7px}.rules-list li{font-size:12px}}
 @media(max-width:800px){.topbar{flex-direction:column;align-items:start;padding:9px}.main-layout{display:flex;flex-direction:column;padding:8px;gap:10px}.board-shell{width:100%}.right-panel{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px}.player-area,.quiz-area{grid-column:1/-1}.left-panel{width:100%;display:block;order:2}.board-shell{order:0}.right-panel{order:1}.rules-list{grid-template-columns:1fr 1fr}.map{min-width:790px}.quiz-area{max-width:100%}.quiz-card{min-height:200px}.choices{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){.die.rolling{animation:none}.draw-card.ready{animation:none}.cell{transition:none}}
+
+/* ========= 大成國小大富翁：高彩度童趣卡通遊戲介面（原生元件） ========= */
+:root{--ink:#402416;--gold:#f8b72e;--border:#be7f29;--red:#f22d46;--blue:#138ce6;--green:#05875c;--cream:#fff9e6}
+body{background:linear-gradient(180deg,#6ed6ff 0%,#b6eeff 34%,#daf9da 100%);color:#432a20;font-family:'Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 2% 12%,#fff9 0 8%,transparent 8.2%),radial-gradient(ellipse at 93% 15%,#fff9 0 6%,transparent 6.2%),radial-gradient(ellipse at 50% 4%,#fff9 0 3%,transparent 3.2%)}
+.topbar{max-width:1920px;padding:9px 20px 6px;min-height:88px;background:linear-gradient(#a3eaffcc,#ffffff50);border-bottom:3px solid #fff9d2;gap:20px}
+.logo{gap:8px;filter:drop-shadow(1px 3px 1px #79543755)}
+.logo .building{font-size:50px;filter:drop-shadow(3px 2px 0 white)}
+.logo .primary{font-weight:1000;letter-spacing:1.5px;font-size:clamp(31px,2.45vw,49px);color:#f8a8d3;-webkit-text-stroke:2px #5f2530;text-shadow:3px 3px #fff,5px 6px #bb7f36,7px 7px #563019}
+.logo .secondary{font-size:clamp(26px,1.8vw,38px);color:#ffe44d;-webkit-text-stroke:1.7px #653314;text-shadow:2px 3px #fff8c4,4px 5px #a35d17}
+.top-actions button{border:3px solid #fff8c6;border-radius:26px;background:linear-gradient(180deg,#fefce9,#ffcf4b);box-shadow:0 4px 0 #a76d23,0 4px 7px #0004;color:#633619;font-weight:1000;font-size:15px;padding:8px 15px}
+.top-actions button:hover{transform:translateY(-2px)}
+.main-layout{grid-template-columns:minmax(236px,275px) minmax(780px,1fr) minmax(300px,332px);gap:13px;padding:9px 13px 24px;max-width:1920px}
+.card{border:5px solid #f7bc50;border-radius:25px;background:linear-gradient(155deg,#fffef2,#fff0bf);box-shadow:0 5px 0 #b97631,0 11px 18px #5b403038;overflow:visible}
+.left-panel,.right-panel{gap:14px}
+.section-heading{position:relative;margin:-16px auto 12px;padding:8px 19px;border:4px solid #ffe996;border-radius:26px;background:linear-gradient(180deg,#0cae70,#006a46);color:#fff9c8;font-size:21px;text-shadow:1px 2px #185138,-1px -1px #416d48;box-shadow:0 3px 0 #9b742c,0 4px 9px #21392445;white-space:nowrap}
+.rules{padding:23px 15px 12px}
+.rules .section-heading{background:linear-gradient(180deg,#c87813,#875015);color:#fff9b6;border-color:#ffdf73}
+.rules-list{gap:13px}.rules-list li{font-size:15px;line-height:1.55;font-weight:1000;color:#27190f}
+.rules-list .num{width:30px;height:30px;flex:0 0 30px;font-size:17px;border:2px solid #fff7c3;background:linear-gradient(#ff7971,#d71b32);box-shadow:0 3px 0 #943029}
+.mascots{height:190px;margin-top:12px;background:radial-gradient(ellipse at center bottom,#c7f38a 0 45%,transparent 47%);overflow:visible}
+.mascots::before{font-size:134px;left:-23px;bottom:-5px}
+.mascots .boy{left:30px;font-size:92px;text-shadow:0 0 4px white,0 4px 0 #513523}
+.mascots .girl{left:115px;font-size:93px;text-shadow:0 0 4px white,0 4px 0 #513523}
+.quick{padding:22px 13px 16px}.quick .section-heading{font-size:17px;background:linear-gradient(#0fa1c3,#127b8c)}
+.quick .mini{font-size:16px;color:#d34b44}.quick p{font-size:14px}.quick label{font-weight:1000}
+.quick select{font-weight:950;border:3px solid #ebbd58;background:#fffbec;box-shadow:0 3px 0 #b99148}
+.board-shell{border:7px solid #fff0a8;border-radius:29px;background:#b3f1fe;box-shadow:0 7px 0 #c98c35,0 15px 24px #14364a45;padding:3px}
+.map{background:linear-gradient(180deg,#77d6ff 0%,#d4f8ff 26%,#c2ee88 26.5%,#8fd45c 100%);border:4px solid #ffffffaa;border-radius:19px;min-width:790px}
+.map::before{background:radial-gradient(ellipse at 25% 12%,#ffffffb3 0 3%,transparent 3.4%),radial-gradient(ellipse at 64% 9%,#ffffffbb 0 4%,transparent 4.4%),radial-gradient(ellipse at 93% 8%,#ffffffbb 0 2%,transparent 2.4%),radial-gradient(circle at 20% 79%,#f4f2a737 0 14%,transparent 14.2%),radial-gradient(circle at 70% 59%,#f5eca53c 0 11%,transparent 11.2%),repeating-linear-gradient(90deg,transparent 0 40px,#ffffff06 41px 45px)}
+.map-sun{position:absolute;right:12%;top:4%;font-size:4.2cqw;filter:drop-shadow(0 .2cqw .1cqw #eaaf4c);opacity:.9}.map-rainbow{position:absolute;left:22%;top:3%;font-size:4.5cqw;opacity:.86}
+.map-caption{background:linear-gradient(#fff7b8,#ffd05c);border:.3cqw solid #ffffff;border-radius:1.5cqw;color:#aa401c;text-shadow:0 .1cqw #fff;padding:.45cqw 1.1cqw;font-size:1.5cqw;box-shadow:0 .2cqw 0 #c77828;left:3%;top:2%}
+.tree{font-size:5.8cqw;text-shadow:0 .2cqw #517f21;filter:drop-shadow(0 .25cqw .3cqw #476c2c55)}
+.building-block{border:.45cqw solid #be795e;border-bottom:.7cqw solid #9d604b;border-radius:.7cqw;background:linear-gradient(#fef8e8 0 22%,#ffdbaf 22% 100%);box-shadow:.25cqw .45cqw 0 #68411b40;padding-top:.65cqw}
+.building-block:before{height:1.65cqw;top:-1.5cqw;transform:skewX(-11deg);border:.32cqw solid #b45d58;border-radius:.6cqw .6cqw 0 0;background:linear-gradient(160deg,#ff95ac,#ef6177);box-shadow:0 .18cqw #733e3677}
+.building-block .name{border:.38cqw solid #fff8e6;box-shadow:0 .25cqw 0 #93485488,0 .18cqw .25cqw #0003;border-radius:1.3cqw;background:linear-gradient(#ff97ba,#e64777);font-size:1.7cqw;padding:.25cqw .7cqw;text-shadow:0 .12cqw #a12948}
+.building-block .windows{gap:.4cqw;margin:.9cqw .5cqw .3cqw}.building-block .windows i{border:.24cqw solid #fff9df;border-radius:.18cqw;background:linear-gradient(135deg,#f6ffff 0%,#7ed9ff 90%);box-shadow:0 .13cqw 0 #865e4a}
+.building-block.a{background:linear-gradient(#fff8df 0 24%,#f9bb96 24% 100%)}
+.building-block.b{background:linear-gradient(#fff8df 0 24%,#b6dffe 24% 100%)}.building-block.b .name{background:linear-gradient(#52bbf9,#086fcf)}
+.building-block.c{background:linear-gradient(#fff9e3 0 20%,#ffe69c 20% 100%)}.building-block.c .name{background:linear-gradient(#ffdf68,#ed9d21);color:#6f361a;text-shadow:none}
+.building-block.d{background:linear-gradient(#fff5e0 0 21%,#ffc0cc 21% 100%)}.building-block.d .name{background:linear-gradient(#ff91bb,#d6377b)}
+.building-block.e{background:linear-gradient(#fff9ea 0 22%,#e1cafc 22% 100%)}.building-block.e .name{background:linear-gradient(#c1a1ff,#8556c4)}
+.building-block.f{background:linear-gradient(#fff9e7 0 22%,#b3dbfe 22% 100%)}.building-block.f .name{background:linear-gradient(#6dcaf9,#387fd4)}
+.building-block.g{background:linear-gradient(#fff9e7 0 22%,#ffd1d8 22% 100%)}.building-block.g .name{background:linear-gradient(#ff88ab,#d84679)}
+.field{border:1.1cqw solid #fffae8;background:repeating-radial-gradient(ellipse at center,#94e664 0 37%,#f28f83 37.3% 40%,#fff8e3 40.4% 41.4%,#f37d75 42% 46%,#fff8e4 46.4% 47.5%,#e96969 47.9% 50%,transparent 50.5%);box-shadow:0 .2cqw .45cqw #896f3e66}
+.field:before{background:radial-gradient(ellipse at center,#9fe875 0%,#78ca5c 100%)}
+.field .field-name{font-size:3.7cqw;left:31%;top:31%;color:#245b24;-webkit-text-stroke:.2cqw white;text-shadow:.1cqw .15cqw #fff}
+.field .field-kids{position:absolute;z-index:2;left:39%;bottom:9%;font-size:2.5cqw}
+.stage-school{background:linear-gradient(#ffeac3,#e59b68);border-color:#a96c43;border-radius:.8cqw;box-shadow:0 .18cqw #886333}
+.gate{border:.45cqw solid #fff5b4;background:linear-gradient(180deg,#ff7774,#ec2335 55%,#c9082c);border-radius:1.2cqw;box-shadow:0 .35cqw 0 #962732,0 0 .2cqw #fff;font-size:1.75cqw;text-shadow:0 .15cqw #8a2437}
+.gate span{color:#ffef78}
+.path-shadow{stroke:#c5871b;stroke-width:64}.path-gold{stroke:#ffd448;stroke-width:56}.path-middle{stroke:#fff6bb;stroke-width:43}.path-line{stroke:#fff9ee;stroke-width:3;stroke-dasharray:6 13}
+.cell{width:5%;height:5.5%;border:.36cqw solid #f5b943;border-radius:.85cqw;background:linear-gradient(#fffef6,#ffdb7f);box-shadow:0 .32cqw 0 #bd7b28,0 .24cqw .35cqw #85522355;color:#4d281a;font-size:1.3cqw;text-shadow:.08cqw .08cqw white}
+.cell.question{background:linear-gradient(#fff8fb,#ffdbdc);border-color:#ea9fa9}
+.cell.chance{border-color:#fff4bf;background:linear-gradient(#ffb6d9,#ed4c99);color:white;font-size:1.9cqw;text-shadow:0 .14cqw #8e255e}
+.cell.fate{border-color:#effbff;background:linear-gradient(#9be6ff,#3986e4);color:white;font-size:1.9cqw;text-shadow:0 .14cqw #1e4290}
+.cell.start,.cell.finish{background:linear-gradient(#ffe88e,#ff9e47);border-color:#fff1aa}
+.cell.visited{border-color:#b2d469}.cell.active{box-shadow:0 0 0 .55cqw #fffda5,0 .35cqw 0 #b48736;z-index:9}
+.map-little{font-size:2.6cqw;filter:drop-shadow(0 .15cqw .08cqw #fff)}
+.player-area{padding:24px 12px 15px}.player-row{border-width:3px;border-radius:19px;padding:7px 8px;background:linear-gradient(#ffeaf3,#ffb9ce);box-shadow:0 2px 0 #d69ba8;font-size:15px}.player-row:nth-child(2){background:linear-gradient(#eefaff,#b9e6ff)}.player-row:nth-child(3){background:linear-gradient(#f9ffef,#c0efcf)}.player-row:nth-child(4){background:linear-gradient(#fff7e8,#ffe0ab)}.player-row img{width:42px;height:42px;border:3px solid white;box-shadow:0 2px #b78b4a}.turn-text{font-size:13px;font-weight:900;color:#865322}
+.dice-area{padding:24px 12px 16px;background:radial-gradient(circle at center 46%,#f1faff,#82dcff)}.dice-figure{width:128px;height:128px;filter:drop-shadow(2px 5px 0 #4385b055)}.die{border-radius:25px;border-width:6px;box-shadow:inset -6px -7px 9px #9399a657,6px 7px 0 #7aa1ba}.roll-label{font-size:15px;font-weight:1000}.primary-btn{background:linear-gradient(#ff6465,#e30828);border:4px solid #fff3b6;box-shadow:0 5px 0 #98232e;font-size:23px;text-shadow:1px 2px #95232c;padding:10px 28px}
+.card-tray{padding:13px;gap:12px}.draw-card{height:112px;border:4px solid #ffefbb;box-shadow:0 5px 0 #b27764;font-size:23px;border-radius:20px}.draw-card.chance{background:linear-gradient(135deg,#ffd0e8,#f655a5);text-shadow:1px 2px #95295b}.draw-card.fate{background:linear-gradient(135deg,#c8f1ff,#3e98e8);text-shadow:1px 2px #1c4b86}.draw-card span{font-size:50px}
+.quiz-area{padding:24px 13px 18px;background:linear-gradient(#fffbee,#ffecb1)}.quiz-card{border:6px solid #c98c27;border-radius:18px;background:linear-gradient(145deg,#126944,#064e35);box-shadow:inset 0 0 0 3px #e5b64a;color:#fff9df;padding:14px}.question-title{font-size:18px}.choice{border-radius:15px;border:2px solid #e1b665;background:linear-gradient(#fffef4,#fff6dc);font-size:15px}.choice.selected{background:#ffec93}.quiz-submit{border:4px solid #fff5b1;background:linear-gradient(#66d74e,#12852e);box-shadow:0 4px 0 #1b6728;text-shadow:1px 2px #215d2c;font-size:20px;border-radius:30px}
+.board-footer{background:linear-gradient(#fffce9,#ffefb7);border:3px solid #f3c258;border-radius:20px;box-shadow:0 4px 0 #c89432;font-weight:950}
+@media(max-width:1390px){.main-layout{grid-template-columns:220px minmax(790px,1fr) 315px;overflow-x:auto}.topbar{min-width:1325px}}
+
+
+/* 16:9 校園大富翁—寬螢幕桌機、投影機優先 */
+@media (min-width:1200px) {
+  body{min-width:1200px;overflow-x:hidden}
+  .topbar{max-width:1600px;min-height:55px;padding:5px 14px 2px}
+  .logo .building{font-size:30px}
+  .logo .primary{font-size:30px}
+  .logo .secondary{font-size:19px}
+  .top-actions button{padding:5px 11px;font-size:13px;border-radius:18px}
+  .main-layout{max-width:1600px;width:100%;grid-template-columns:minmax(158px,10.8%) minmax(720px,1fr) minmax(280px,20.3%);gap:9px;padding:4px 10px 10px;align-items:start;overflow:visible}
+  .left-panel,.right-panel{gap:8px}
+  .card{border-width:3px;border-radius:16px;box-shadow:0 3px 0 #c98a44,0 6px 12px #295a6b20}
+  .section-heading{font-size:14px;padding:4px 9px;border-width:2px;margin-bottom:5px}
+  .rules{padding:11px 7px 8px}
+  .rules-list{gap:5px}
+  .rules-list li{font-size:11px;line-height:1.35;gap:4px;font-weight:850}
+  .rules-list .num{width:20px;height:20px;flex:0 0 20px;font-size:12px;border-width:1px}
+  .mascots{height:72px;margin-top:1px}
+  .mascots:before{font-size:65px;left:-5px}
+  .mascots .boy{left:14px;font-size:50px}.mascots .girl{left:75px;font-size:50px}.mascots .bird{bottom:40px}
+  .quick{padding:8px}
+  .quick .section-heading{font-size:13px}
+  .quick .mini{font-size:12px;margin-bottom:3px}
+  .quick p,.quick label{font-size:10px;line-height:1.25}
+  .quick .small-note{font-size:9px;line-height:1.3}
+  .quick select{font-size:11px;padding:5px;margin:3px 0 5px;border-width:2px}
+  .board-shell{border-width:4px;border-radius:20px;padding:2px}
+  .map{min-width:0;aspect-ratio:1200 / 840;border-width:2px;border-radius:15px}
+  .player-area{padding:11px 8px 7px}
+  .player-row{padding:3px 6px;font-size:11px;border-width:2px;border-radius:12px;gap:5px}
+  .player-row img{width:29px;height:29px;border-width:2px}
+  .player-list{gap:4px}.turn-text{font-size:10px;margin:4px 0 0}
+  .dice-area{padding:9px 8px 10px}
+  .dice-figure{width:83px;height:83px;margin-bottom:0}
+  .die{width:68px;height:68px;border-width:4px;border-radius:18px}
+  .die .pip{width:10px;height:10px}
+  .roll-label{font-size:11px;margin-bottom:5px}
+  .primary-btn{font-size:15px;padding:4px 10px;min-width:65%;border-width:3px}
+  .card-tray{padding:7px;gap:6px}
+  .draw-card{height:66px;border-width:3px;border-radius:13px;font-size:14px}
+  .draw-card span{font-size:29px}
+  .quiz-area{padding:10px 8px 9px}
+  .quiz-card{min-height:225px;border-width:4px;border-radius:13px;padding:8px}
+  .question-title{font-size:12px;line-height:1.35;margin:4px 0 6px}
+  .quiz-meta{font-size:10px}
+  .choices{gap:4px}
+  .choice{padding:5px;border-radius:8px;font-size:11px;gap:4px;line-height:1.25}
+  .choice .index{width:19px;height:19px;flex-basis:19px}
+  .quiz-idle{min-height:170px}.quiz-idle .emoji{font-size:39px}
+  .quiz-submit{margin-top:6px;font-size:14px;padding:5px;border-width:3px}
+  .board-footer{max-width:1600px;font-size:10px;padding:3px 8px;margin:0 auto;border-width:2px}
+  .status{font-size:12px;padding:7px 12px}
+}
+@media(min-width:1200px) and (max-height:920px){
+  .topbar{min-height:45px}
+  .map{aspect-ratio:1200 / 770}
+  .quiz-card{min-height:200px}
+}
+
+/* =======================================================
+   16:9 橫式新版：玩家資訊移到地圖下方，右側工具從頂端開始
+   使用單一原生網頁遊戲，不增加重疊圖層。
+   ======================================================= */
+.board-column{display:flex;flex-direction:column;gap:9px;min-width:0;width:100%}
+.board-column .board-shell{min-width:0;width:100%;flex:0 0 auto}
+.board-column .map{width:100%;min-width:0}
+.board-column .player-area{display:flex;flex-direction:row;align-items:center;gap:12px;min-height:82px;padding:11px 13px;position:relative}
+.board-column .player-area>.section-heading{flex:0 0 110px;max-width:110px;white-space:nowrap;margin:0;font-size:16px;padding:7px 5px}
+.board-column .player-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:center;min-width:0;flex:1}
+.board-column .player-row{min-width:0;margin:0;gap:7px;padding:5px 7px;align-items:center;border-width:2px;border-radius:13px;font-size:13px}
+.board-column .player-row img{width:33px;height:33px;flex:0 0 33px;border-width:2px}
+.board-column .player-row .score{font-size:13px}
+.board-column .player-area .turn-text{position:absolute;bottom:1px;left:16px;max-width:115px;font-size:10px;line-height:1.2;text-align:center;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.right-panel{min-width:0;align-self:start}
+/* 玩家列移出後，右側骰子就是第一個區塊，頂端和校園地圖對齊 */
+@media (min-width:1200px){
+  .main-layout{grid-template-columns:minmax(155px,11%) minmax(0,1fr) minmax(290px,20%);gap:9px;max-width:1600px;overflow:visible}
+  .board-column{gap:8px}
+  .board-column .map{aspect-ratio:1200/755}
+  .board-column .player-area{min-height:69px;padding:7px 9px;gap:8px}
+  .board-column .player-area>.section-heading{flex-basis:96px;max-width:96px;font-size:13px;padding:5px 4px}
+  .board-column .player-list{gap:5px}
+  .board-column .player-row{font-size:11px;gap:4px;padding:3px 5px}
+  .board-column .player-row img{width:28px;height:28px;flex-basis:28px}
+  .board-column .player-row .score{font-size:11px}
+  .board-column .player-area .turn-text{left:13px;max-width:96px;font-size:9px;bottom:1px}
+  .right-panel .dice-area{padding:8px 9px 9px}
+  .right-panel .card-tray{padding:7px}
+  .right-panel .quiz-area{padding:9px 8px}
+  .right-panel .quiz-card{min-height:205px}
+  .status{padding:6px 9px;font-size:11px}
+}
+@media (min-width:1200px) and (max-height:820px){
+  .topbar{min-height:42px;padding-top:2px;padding-bottom:1px}
+  .main-layout{padding-top:2px;padding-bottom:5px}
+  .board-column .map{aspect-ratio:1200/720}
+  .board-column .player-area{min-height:61px;padding:5px 9px}
+  .board-column .player-row img{width:25px;height:25px;flex-basis:25px}
+  .right-panel .dice-figure{width:74px;height:74px}
+  .right-panel .die{width:64px;height:64px}
+  .right-panel .draw-card{height:58px}
+  .right-panel .quiz-card{min-height:170px}
+  .status{padding:4px 9px}
+  .board-footer{display:none}
+}
+@media (min-width:1200px) and (max-height:960px){
+  .board-footer{display:none}
+}
+@media (max-width:1199px){
+  .main-layout{grid-template-columns:190px minmax(750px,1fr) 300px;overflow-x:auto}
+  .board-column .player-area{min-height:76px}
+  .board-column .player-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 </style>
 </head>
 <body>
@@ -72,30 +251,32 @@ button,select,input{font:inherit}button{cursor:pointer}button:disabled{cursor:no
    <li><span class="num">4</span><span>答對加 <strong>10 分</strong>，答錯不扣分，並顯示正確答案與詳解。</span></li>
    <li><span class="num">5</span><span>停在<strong>機會／命運格</strong>，不答題，改抽對應的隨機事件。</span></li>
    <li><span class="num">6</span><span>抵達<strong>後校門</strong>後完成旅程；全部到達，總分最高者獲勝。</span></li>
-  </ol><div class="mascots" aria-hidden="true"><span class="bird">✨</span><span class="boy">🧒🏻</span><span class="girl">👧🏻</span></div></section>
+  </ol><div class="mascots" aria-hidden="true"><span class="bird">✨</span><span class="boy">👦🏻</span><span class="girl">👧🏻</span></div></section>
   <section class="card quick"><h2 class="section-heading">📚 自然科學題庫</h2><p class="mini">內建 295 題・第一／二單元</p><label for="unitSelect">選擇本局題庫</label><select id="unitSelect"><option value="all">第一、二單元混合</option><option value="01">第一單元：動物世界</option><option value="02">第二單元：探索聲光世界</option></select><p class="small-note">題目隨機出現，抽過的題目會優先避免重複；題庫用完才重新洗牌。可離線使用，無須 Supabase。</p></section>
  </aside>
+ <div class="board-column">
  <section class="board-shell" aria-label="互動校園路線">
   <div class="map-scroll"><div class="map" id="map" aria-label="大成國小校園關卡地圖">
-   <div class="map-caption">🌈 大成國小校園冒險</div>
+   <div class="map-caption">🌈 大成國小校園冒險</div><div class="map-sun" aria-hidden="true">☀️</div><div class="map-rainbow" aria-hidden="true">🌈</div>
    <div class="cloud" style="left:18%;top:2%">☁️</div><div class="cloud" style="left:72%;top:5%">☁️</div>
-   <div class="tree" style="left:2%;top:27%">🌳</div><div class="tree" style="left:8%;top:61%">🌲</div><div class="tree" style="left:71%;top:36%">🌳</div><div class="tree" style="left:88%;top:11%">🌲</div><div class="tree" style="left:5%;top:84%">🌳</div>
+   <div class="tree" style="left:2%;top:27%">🌳</div><div class="tree" style="left:8%;top:61%">🌲</div><div class="tree" style="left:71%;top:36%">🌳</div><div class="tree" style="left:88%;top:11%">🌲</div><div class="tree" style="left:5%;top:84%">🌳</div><div class="tree" style="left:24%;top:26%">🌳</div><div class="tree" style="left:58%;top:32%">🌳</div><div class="tree" style="left:77%;top:68%">🌳</div>
    <div class="building-block a"><span class="name">A 棟｜大成樓</span><div class="windows"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
    <div class="building-block b"><span class="name">B 棟｜忠孝樓</span><div class="windows"><i></i><i></i><i></i><i></i><i></i></div></div>
-   <div class="field"><span class="field-name">操場</span><span class="play">🏃🏻</span><span class="soccer">⚽</span></div><div class="stage-school">🎤</div>
+   <div class="field"><span class="field-name">操場</span><span class="play">🏃🏻</span><span class="soccer">⚽</span><span class="field-kids" aria-hidden="true">👧🏻 🧒🏻 🏀</span></div><div class="stage-school">🎤</div>
    <div class="building-block c"><span class="name">C 棟</span><div class="windows"><i></i><i></i></div></div>
    <div class="building-block d"><span class="name">D 棟｜活動中心</span><div class="windows"><i></i><i></i></div></div>
    <div class="building-block e"><span class="name">E 棟｜仁愛樓</span><div class="windows"><i></i><i></i><i></i></div></div>
    <div class="building-block f"><span class="name">F 棟｜信義樓</span><div class="windows"><i></i><i></i><i></i><i></i></div></div>
    <div class="building-block g"><span class="name">G 棟｜和平樓</span><div class="windows"><i></i><i></i></div></div>
-   <span class="map-little" style="left:31%;top:43%">👦🏻👧🏻</span><span class="map-little" style="left:49%;top:54%">🏀</span><span class="map-little" style="left:71%;top:46%">👩🏻‍🏫</span><span class="map-little" style="left:9%;top:48%">🌼</span><span class="map-little" style="left:72%;top:87%">🌻</span>
-   <div class="gate front">前校門<span>起點 ↓</span></div><div class="gate back">後校門<span>🏁 終點</span></div>
+   <span class="map-little" style="left:31%;top:43%">👦🏻👧🏻</span><span class="map-little" style="left:49%;top:54%">🏀</span><span class="map-little" style="left:71%;top:46%">👩🏻‍🏫</span><span class="map-little" style="left:9%;top:48%">🌼</span><span class="map-little" style="left:72%;top:87%">🌻</span><span class="map-little" style="left:18%;top:32%">🌼🌸</span><span class="map-little" style="left:57%;top:68%">🪻🌷</span><span class="map-little" style="left:87%;top:79%">🌷🌼</span><span class="map-little" style="left:8%;top:69%">👦🏻</span><span class="map-little" style="left:85%;top:57%">👧🏻</span>
+   <div class="gate front">🚩 前校門<span>起點 ↓</span></div><div class="gate back">🏁 後校門<span>🏁 終點</span></div>
    <svg class="map-svg" viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true"><path id="pathShadow" class="path-shadow"/><path id="pathGold" class="path-gold"/><path id="pathMiddle" class="path-middle"/><path id="pathLine" class="path-line"/></svg>
    <div id="cells" aria-label="關卡格子"></div><svg id="tokenLayer" viewBox="0 0 1200 850" preserveAspectRatio="none" aria-label="玩家頭像棋子"></svg>
   </div></div>
  </section>
+ <section class="card player-area" aria-label="玩家資訊橫列"><h2 class="section-heading">🏆 玩家資訊</h2><div class="player-list" id="playerList"><p>請先設定玩家。</p></div><p class="turn-text" id="turnText">準備開始！</p></section>
+ </div>
  <aside class="right-panel">
-  <section class="card player-area"><h2 class="section-heading">🏆 玩家資訊</h2><div class="player-list" id="playerList"><p>請先設定玩家。</p></div><p class="turn-text" id="turnText">準備開始！</p></section>
   <section class="card dice-area"><h2 class="section-heading">🎲 擲骰子</h2><div class="dice-figure"><div id="die" class="die n1" role="img" aria-label="骰子一點"><i class="pip tl"></i><i class="pip tm"></i><i class="pip tr"></i><i class="pip ml"></i><i class="pip mm"></i><i class="pip mr"></i><i class="pip bl"></i><i class="pip bm"></i><i class="pip br"></i></div></div><p class="roll-label" id="rollValue">目前骰面：1 點</p><button class="primary-btn" id="rollButton" disabled>擲骰子</button></section>
   <section class="card card-tray"><button class="draw-card chance" id="chanceButton" disabled>機會卡<span>❔</span></button><button class="draw-card fate" id="fateButton" disabled>命運卡<span>🎲</span></button></section>
   <section class="card quiz-area"><h2 class="section-heading">🧪 題目區</h2><div class="quiz-card" id="quizCard"><div class="quiz-idle"><span class="emoji">🔬</span><p>開始遊戲後，停在班級格就會隨機出題。<br>題目和所有選項會直接呈現在這裡。</p></div></div><button class="quiz-submit" id="submitButton" disabled>送出答案</button></section>
