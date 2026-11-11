@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>大成國小｜校園大富翁・骰子動畫與原圖題板版</title>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>大成國小｜校園大富翁・班級關卡音效擴充版</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(#65cbff,#caf6ff);font-family:'Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;color:#352d47}button,select,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}
 .scrollview{overflow:auto;width:100%;height:100vh;padding:8px;display:flex;align-items:flex-start;justify-content:center}
@@ -8,7 +8,7 @@
 #players{left:82.15%;top:9%;width:16.4%;height:25%;display:block;padding:0;background:none;border:0;box-shadow:none}
 .player{position:relative;display:flex;align-items:center;gap:.3cqw;background:transparent;border:none;border-radius:.45cqw;padding:.15cqw .35cqw .15cqw .2cqw;min-height:2.72cqw;font-weight:1000;font-size:1.08cqw;white-space:nowrap;color:#1f1711}.player.active{background:rgba(255,237,154,.25);outline:.16cqw solid #f5b331;box-shadow:none}.player .symbol{display:none}.player .pts{margin-left:auto;font-size:1.08cqw}.player.finished{opacity:.85}
 #diceArea{left:82.0%;top:35.35%;width:16.55%;height:17%;background:none;border:none;display:block;padding:0}
-#diceGlyph{position:absolute;right:8%;top:6%;display:flex;align-items:center;justify-content:center;min-width:2.8cqw;height:2.1cqw;padding:0 .55cqw;border-radius:1cqw;background:rgba(255,255,255,.92);color:#214567;font-size:1.05cqw;font-weight:1000;line-height:1;box-shadow:0 .1cqw .25cqw #0003}#roll{position:absolute;left:15%;top:64%;width:70%;height:30%;background:transparent;border:none;box-shadow:none;color:transparent;text-shadow:none;font-size:0;padding:0}
+#diceGlyph{position:absolute;right:6%;top:8%;display:flex;align-items:center;justify-content:center;min-width:2.9cqw;height:1.95cqw;padding:0 .48cqw;border-radius:1cqw;background:rgba(255,255,255,.92);color:#214567;font-size:.98cqw;font-weight:1000;line-height:1;box-shadow:0 .1cqw .25cqw #0003}#roll{position:absolute;left:15%;top:64%;width:70%;height:30%;background:transparent;border:none;box-shadow:none;color:transparent;text-shadow:none;font-size:0;padding:0}
 .cardButtons{left:82.0%;top:54.55%;width:16.55%;height:9.7%;display:grid;grid-template-columns:1fr 1fr;gap:.55cqw}.cardButton{border:none;border-radius:1.2cqw;box-shadow:none;font-size:0;color:transparent;text-shadow:none;opacity:1;padding:0;background:transparent}.cardButton.chance{background:transparent}.cardButton.fate{background:transparent}.cardButton:disabled{opacity:.7}
 #quiz{left:82%;top:65.3%;width:16.5%;height:32%;display:flex;flex-direction:column;gap:.35cqw;background:linear-gradient(#fff9d9f9,#fdf2bff9);border:.32cqw solid #df9b4c;border-radius:1.1cqw;box-shadow:0 .3cqw .8cqw #3b325d4f;padding:.55cqw;overflow:hidden}
 #quiz .panelTitle{display:block;margin-top:-.9cqw;font-size:1.42cqw;margin-bottom:.2cqw;flex:0 0 auto}
@@ -32,9 +32,19 @@
 
 /* V6: 原背景內建可動骰子與原圖題板，沒有額外面板與題目捲軸 */
 #diceArea.panel{left:82%;top:35.4%;width:16.5%;height:17%;display:block;background:transparent;border:0;box-shadow:none;overflow:visible}
-#diceSprite{position:absolute;left:23%;top:3%;width:54%;height:61%;object-fit:contain;z-index:2;pointer-events:none;transform-origin:50% 50%;filter:drop-shadow(0 .15cqw .15cqw #26619d88)}
-#diceSprite.rolling{animation:die-roll .11s linear infinite;filter:drop-shadow(0 .25cqw .3cqw #1d508899)}
-@keyframes die-roll{0%{transform:translate(0,0) rotate(-18deg) scale(.91)}25%{transform:translate(5%,-11%) rotate(65deg) scale(1)}50%{transform:translate(-4%,5%) rotate(145deg) scale(.96)}75%{transform:translate(5%,-6%) rotate(235deg) scale(1.04)}100%{transform:translate(0,0) rotate(342deg) scale(.93)}}
+#diceSprite{position:absolute;left:25%;top:6%;width:48%;aspect-ratio:1/1;z-index:2;pointer-events:none;transform-origin:50% 50%;filter:drop-shadow(0 .16cqw .18cqw #26619d88);background:linear-gradient(145deg,#ffffff,#ececf2);border:.18cqw solid #d7d7df;border-radius:1.15cqw;box-shadow:inset -.3cqw -.3cqw .45cqw #00000010,inset .18cqw .18cqw .28cqw #ffffffcc,0 .15cqw .22cqw #00000025}
+#diceSprite .pip{position:absolute;width:13%;height:13%;border-radius:50%;background:#111;box-shadow:inset .04cqw .04cqw .05cqw #444, 0 .02cqw .05cqw #0008;opacity:0}
+#diceSprite .p1{left:18%;top:18%}#diceSprite .p2{left:43.5%;top:18%}#diceSprite .p3{right:18%;top:18%}
+#diceSprite .p4{left:18%;top:43.5%}#diceSprite .p5{left:43.5%;top:43.5%}#diceSprite .p6{right:18%;top:43.5%}
+#diceSprite .p7{left:18%;bottom:18%}#diceSprite .p8{left:43.5%;bottom:18%}#diceSprite .p9{right:18%;bottom:18%}
+#diceSprite.v1 .p5{opacity:1}
+#diceSprite.v2 .p1,#diceSprite.v2 .p9{opacity:1}
+#diceSprite.v3 .p1,#diceSprite.v3 .p5,#diceSprite.v3 .p9{opacity:1}
+#diceSprite.v4 .p1,#diceSprite.v4 .p3,#diceSprite.v4 .p7,#diceSprite.v4 .p9{opacity:1}
+#diceSprite.v5 .p1,#diceSprite.v5 .p3,#diceSprite.v5 .p5,#diceSprite.v5 .p7,#diceSprite.v5 .p9{opacity:1}
+#diceSprite.v6 .p1,#diceSprite.v6 .p3,#diceSprite.v6 .p4,#diceSprite.v6 .p6,#diceSprite.v6 .p7,#diceSprite.v6 .p9{opacity:1}
+#diceSprite.rolling{animation:die-roll .12s linear infinite;filter:drop-shadow(0 .25cqw .3cqw #1d508899)}
+@keyframes die-roll{0%{transform:translate(0,0) rotate(-10deg) scale(.92)}25%{transform:translate(4%,-10%) rotate(70deg) scale(1)}50%{transform:translate(-5%,4%) rotate(145deg) scale(.96)}75%{transform:translate(4%,-6%) rotate(230deg) scale(1.04)}100%{transform:translate(0,0) rotate(320deg) scale(.93)}}
 #diceGlyph{position:absolute;right:7%;top:7%;z-index:3;display:none;min-width:2.1cqw;height:1.7cqw;background:#fff9c3;border:.12cqw solid #75bdea;border-radius:1cqw;color:#164d73;font-size:.85cqw;font-weight:1000;text-align:center;line-height:1.5cqw}
 #diceGlyph.show{display:block}
 #roll{left:15%;top:66%;width:70%;height:29%;z-index:4;background:transparent;border:0;box-shadow:none;color:transparent;font-size:0}
@@ -61,16 +71,24 @@
 #quizResultCard .result-expl{max-height:18cqw;overflow-y:auto}
 #quizResultCard button{font-size:1.3cqw;margin-top:1cqw}
 
+
+/* 互動關卡文字：以小型淡黃色名牌標示各題目格，避免四位數分機誤作班級。 */
+#tileLabels{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;overflow:visible}
+#tileLabels .classTileLabel rect{fill:#fff9dcf0;stroke:#dba72f;stroke-width:1.6}
+#tileLabels .classTileLabel text{font-family:'Microsoft JhengHei','Noto Sans TC',sans-serif;font-size:13px;font-weight:900;fill:#46351c;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#fff9dd;stroke-width:2px}
+#soundOption{display:flex;align-items:center;gap:.4cqw;white-space:nowrap;margin:.22cqw 0 0;color:#5f3b1d;font-weight:900;font-size:.95cqw}
+#soundOption input{width:1.1cqw;height:1.1cqw;accent-color:#169445;cursor:pointer}
+
 </style></head><body><div class="scrollview"><main class="stage" id="stage" aria-label="大成國小校園大富翁互動遊戲地圖">
-<svg id="tokens" viewBox="0 0 1672 941" aria-label="玩家棋子位置"></svg>
+<svg id="tileLabels" viewBox="0 0 1672 941" aria-label="班級與教室關卡名稱"></svg><svg id="tokens" viewBox="0 0 1672 941" aria-label="玩家棋子位置"></svg>
 <section id="players" class="overlay panel" aria-label="玩家資訊"><div class="panelTitle">玩家資訊</div><div id="roster"></div></section>
-<section id="diceArea" class="overlay panel" aria-label="骰子區"><img id="diceSprite" src="dice.png" alt="" aria-hidden="true"><div id="diceGlyph" aria-live="polite"></div><button id="roll" disabled title="點擊背景紅色擲骰子按鈕" aria-label="擲骰子">🎲 擲骰子</button></section>
+<section id="diceArea" class="overlay panel" aria-label="骰子區"><div id="diceSprite" aria-hidden="true"><span class="pip p1"></span><span class="pip p2"></span><span class="pip p3"></span><span class="pip p4"></span><span class="pip p5"></span><span class="pip p6"></span><span class="pip p7"></span><span class="pip p8"></span><span class="pip p9"></span></div><div id="diceGlyph" aria-live="polite"></div><button id="roll" disabled title="點擊背景紅色擲骰子按鈕" aria-label="擲骰子">🎲 擲骰子</button></section>
 <div class="cardButtons overlay"><button id="chance" class="cardButton chance" disabled aria-label="抽機會卡" title="抽機會卡"></button><button id="fate" class="cardButton fate" disabled aria-label="抽命運卡" title="抽命運卡"></button></div>
 <section id="quiz" class="overlay panel" aria-label="即時答題區"><div class="panelTitle">題目區</div><div id="questionBody"><h3>準備挑戰自然科學王！</h3>請先設定玩家。停在班級關卡時，題目會直接出現在這裡，選答案後顯示詳解。</div></section>
 <button id="quizSend" disabled aria-label="送出答案" title="送出選擇的答案"></button><button id="quizMore" aria-label="放大閱讀完整題目">放大題目</button>
 <div id="quizResultLayer" role="dialog" aria-modal="true" aria-label="答案結果"><div id="quizResultCard"></div></div>
 <div id="progress" class="overlay" aria-live="polite">從前校門出發，迎接校園大富翁挑戰！</div>
-<div id="modeArea" class="overlay"><div class="configline"><label for="unit">📚 題庫</label><select id="unit"><option value="all">第一、第二單元混合</option><option value="01">第一單元 動物世界</option><option value="02">第二單元 探索聲光世界</option></select></div></div>
+<div id="modeArea" class="overlay"><div class="configline"><label for="unit">📚 題庫</label><select id="unit"><option value="all">第一、第二單元混合</option><option value="01">第一單元 動物世界</option><option value="02">第二單元 探索聲光世界</option></select></div><label id="soundOption"><input type="checkbox" id="soundOn" checked> 🔊 開啟遊戲音效</label></div>
 <div id="bottomcontrols" class="overlay"><button id="newGame">↻ 新遊戲</button><button id="fullscreen">⛶ 全螢幕</button></div>
 <div id="toast" role="dialog" aria-modal="true" aria-label="機會命運結果"><h2 id="toastTitle"></h2><p id="toastText"></p><button class="action" id="toastDone">繼續遊戲</button></div>
 <div id="setupShade"><div id="setupBox"><h2>🏫 大成國小校園大富翁</h2><p>2～4 位玩家輪流擲骰子，答對加分！<br>從前校門走到後校門。</p><label for="playerCount">玩家人數</label><select id="playerCount"><option value="2">2 人</option><option value="3">3 人</option><option value="4">4 人</option></select><div id="nameInputs"></div><button id="start" class="action">🚩 開始遊戲</button></div></div>
@@ -89,7 +107,7 @@ const rawRoute=[
  [415,174,'chance','機會'],[415,248,'class','304'],
  ...[490,565,640,716,791,867,940,1015,1085,1160].map((x,i)=>[x,248,i===5?'fate':'class',['303','302','301','402','406','413','409','403','404','405'][i]]),
  [1241,248,'chance','機會'],[1241,337,'class','C棟'],
- ...[1165,1095,1020,950,875,800,725,650,575,500,430].map((x,i)=>[x,339,i===5?'chance':i===10?'class':'walkway',i===10?'圖書室':'B棟走廊']),
+... [1165,1095,1020,950,875,800,725,650,575,500,430].map((x,i)=>[x,339,i===5?'chance':'class',['電腦室2','電腦室1','健康中心','活動室','資源1','機會','資源2','資源3','輔導室','兒童電影院','圖書室'][i]]),
  [385,410,'fate','命運'],[385,473,'class','操場'],[385,538,'chance','機會'],
  ...[420,480,540,600,660,720,785,860,930,990,1050].map((x,i)=>[x,610,i===6?'fate':'class',['205','206','110','109','107','106','105','104','103','102','101'][i]]),
  [1045,692,'chance','機會'],
@@ -99,16 +117,55 @@ const rawRoute=[
  ...[1055,1000,945,890,835].map((x,i)=>[x,795,i===3?'fate':'class',['自然A','自然B','自然C','自然D','201'][i]]),
  [828,856,'finish','後校門']
 ];
-let classCounter=0;
-const route=rawRoute.map(([x,y,type,label],idx)=>{
-  let finalType=type;
-  if(type==='class'){
-    classCounter++;
-    if(classCounter%2===0) finalType='walkway';
-  }
-  return {x,y,type:finalType,label,idx};
-});
+const route=rawRoute.map(([x,y,type,label],idx)=>({x,y,type,label,idx}));
 
+
+
+// 瀏覽器內建音效，不用外部音樂檔；可在畫面下方關閉。
+let soundCtx=null;
+function soundTone(freq=440, duration=.12, delay=0, kind='sine', volume=.08){
+ if(!$('soundOn')?.checked)return;
+ try {
+  const AudioCtx=window.AudioContext||window.webkitAudioContext;
+  if(!AudioCtx)return;
+  soundCtx ||= new AudioCtx();
+  if(soundCtx.state==='suspended')soundCtx.resume().catch(()=>{});
+  const o=soundCtx.createOscillator(), g=soundCtx.createGain();
+  o.type=kind;o.frequency.value=freq;
+  const now=soundCtx.currentTime+delay;
+  g.gain.setValueAtTime(.0001,now);
+  g.gain.exponentialRampToValueAtTime(volume,now+.018);
+  g.gain.exponentialRampToValueAtTime(.0001,now+duration);
+  o.connect(g);g.connect(soundCtx.destination);o.start(now);o.stop(now+duration+.025);
+ }catch(err){/* 音效可用性不影響遊戲 */}
+}
+function playSound(type){
+ if(type==='roll'){[360,430,520,610].forEach((f,i)=>soundTone(f,.10,i*.07,'triangle',.055));}
+ else if(type==='step')soundTone(540,.06,0,'sine',.038);
+ else if(type==='correct'){[523,659,784,1047].forEach((f,i)=>soundTone(f,.18,i*.11,'sine',.09));}
+ else if(type==='wrong'){soundTone(350,.22,0,'triangle',.055);soundTone(275,.25,.17,'triangle',.05);}
+ else if(type==='card'){[523,659,784].forEach((f,i)=>soundTone(f,.14,i*.12,'sine',.075));}
+}
+const tileLabelSvgNs='http://www.w3.org/2000/svg';
+function drawTileLabels(){
+ const svg=$('tileLabels');svg.replaceChildren();
+ route.forEach(t=>{
+  if(t.type!=='class')return;
+  const label=String(t.label);
+  // 小型位置標籤：實際四位數字是分機號碼，不印在地圖上。
+  if(/^\d{4}$/.test(label))return;
+  const short=label.replace('電腦室','電腦').replace('兒童電影院','電影院').replace('健康中心','健康').replace('圖書室','圖書');
+  const width=Math.max(36,short.length*13+13),x=t.x,y=t.y;
+  const g=document.createElementNS(tileLabelSvgNs,'g');g.setAttribute('class','classTileLabel');
+  const rect=document.createElementNS(tileLabelSvgNs,'rect');
+  rect.setAttribute('x',x-width/2);rect.setAttribute('y',y-12);rect.setAttribute('width',width);rect.setAttribute('height',24);rect.setAttribute('rx',8);
+  const txt=document.createElementNS(tileLabelSvgNs,'text');txt.setAttribute('x',x);txt.setAttribute('y',y+1);txt.textContent=short;
+  const title=document.createElementNS(tileLabelSvgNs,'title');title.textContent=label+'：隨機自然科學問題';
+  g.append(rect,txt,title);svg.appendChild(g);
+ });
+}
+
+function setDie(n){const die=$('diceSprite');die.className='v'+n;}
 
 function drawTokens(){
   const svg=$('tokens');
@@ -148,15 +205,15 @@ function updateRoster(){
 function info(message){$('progress').textContent=message}
 function setupNames(){$('nameInputs').innerHTML=Array.from({length:Number($('playerCount').value)},(_,i)=>`<input class="nameInput" maxlength="10" value="玩家${i+1}" aria-label="玩家${i+1}名稱">`).join('')}
 $('playerCount').addEventListener('change',setupNames);setupNames();
-function begin(){players=[...document.querySelectorAll('.nameInput')].map((el,i)=>({name:el.value.trim()||`玩家${i+1}`,pos:0,score:0,finished:false}));turn=0;phase='roll';seen.clear();questionNow=null;$('setupShade').style.display='none';$('quizSend').disabled=true;$('quizResultLayer').classList.remove('show');$('diceGlyph').classList.remove('show');$('roll').disabled=false;$('chance').disabled=true;$('fate').disabled=true;$('questionBody').innerHTML='<h3>🎲 擲骰子開始！</h3><p>停在班級時，題目直接出現在這裡。</p>'; updateRoster();info(`輪到 ${players[turn].name}，請直接點右側紅色「擲骰子」！`)}
+function begin(){players=[...document.querySelectorAll('.nameInput')].map((el,i)=>({name:el.value.trim()||`玩家${i+1}`,pos:0,score:0,finished:false}));turn=0;phase='roll';seen.clear();questionNow=null;$('setupShade').style.display='none';$('quizSend').disabled=true;$('quizResultLayer').classList.remove('show');setDie(1);$('diceGlyph').textContent='1 點';$('diceGlyph').classList.add('show');$('roll').disabled=false;$('chance').disabled=true;$('fate').disabled=true;$('questionBody').innerHTML='<h3>🎲 擲骰子開始！</h3><p>除了停在機會卡或命運卡，其他班級格都會隨機出一題。</p>'; updateRoster();info(`輪到 ${players[turn].name}，請直接點右側紅色「擲骰子」！`)}
 $('start').onclick=begin;
-$('newGame').onclick=()=>{if(phase!=='setup'&&!confirm('確定重新開始？目前分數將歸零。'))return;phase='setup';$('quizSend').disabled=true;$('quizResultLayer').classList.remove('show');$('diceSprite').classList.remove('rolling');players=[];$('setupShade').style.display='flex';$('roll').disabled=true;updateRoster();info('請設定玩家')};
+$('newGame').onclick=()=>{if(phase!=='setup'&&!confirm('確定重新開始？目前分數將歸零。'))return;phase='setup';$('quizSend').disabled=true;$('quizResultLayer').classList.remove('show');$('diceSprite').classList.remove('rolling');setDie(1);$('diceGlyph').textContent='1 點';players=[];$('setupShade').style.display='flex';$('roll').disabled=true;updateRoster();info('請設定玩家')};
 $('fullscreen').onclick=()=>{if(!document.fullscreenElement){$('stage').requestFullscreen?.().catch(()=>{})}else document.exitFullscreen?.()};
 const wait=ms=>new Promise(res=>setTimeout(res,ms));
-async function roll(){if(phase!=='roll'||locked)return;locked=true;phase='moving';$('roll').disabled=true;$('diceSprite').classList.add('rolling');$('diceGlyph').classList.remove('show');let n=1;for(let i=0;i<12;i++){n=Math.floor(Math.random()*6)+1;$('diceGlyph').textContent=`${n} 點`; await wait(50+i*6)}$('diceSprite').classList.remove('rolling');$('diceGlyph').classList.add('show');const p=players[turn],end=Math.min(route.length-1,p.pos+n);info(`${p.name} 擲出 ${n} 點，沿校園前進！`);while(p.pos<end){p.pos++;drawTokens();await wait(215)}locked=false;const tile=route[p.pos];if(tile.type==='finish'){p.finished=true;info(`🏁 ${p.name} 抵達後校門！`);nextTurn();return}if(tile.type==='chance'||tile.type==='fate'){phase='card-pick';$('chance').disabled=tile.type!=='chance';$('fate').disabled=tile.type!=='fate';info(`${p.name} 停在${tile.type==='chance'?'機會':'命運'}格，請點選右側的卡片！`);return}if(tile.type==='walkway'){info(`${p.name} 經過 ${tile.label}，這格不需答題，下一位！`);nextTurn();return}ask(tile)}
+async function roll(){if(phase!=='roll'||locked)return;locked=true;phase='moving';playSound('roll');$('roll').disabled=true;$('diceSprite').classList.add('rolling');let n=1;for(let i=0;i<12;i++){n=Math.floor(Math.random()*6)+1;setDie(n);$('diceGlyph').textContent=`${n} 點`;await wait(60+i*8)}$('diceSprite').classList.remove('rolling');setDie(n);$('diceGlyph').textContent=`${n} 點`;const p=players[turn],end=Math.min(route.length-1,p.pos+n);info(`${p.name} 擲出 ${n} 點，沿校園前進！`);while(p.pos<end){p.pos++;drawTokens();playSound('step');await wait(215)}locked=false;const tile=route[p.pos];if(tile.type==='finish'){p.finished=true;info(`🏁 ${p.name} 抵達後校門！`);nextTurn();return}if(tile.type==='chance'||tile.type==='fate'){phase='card-pick';$('chance').disabled=tile.type!=='chance';$('fate').disabled=tile.type!=='fate';info(`${p.name} 停在${tile.type==='chance'?'機會':'命運'}格，請點選右側的卡片！`);return}ask(tile)}
 $('roll').onclick=roll;
 function pickQ(){const unit=$('unit').value;const pool=QUESTIONS.filter(q=>unit==='all'||q.unit.startsWith(unit));if(!pool.length)return null;let avail=pool.filter(q=>!seen.has(q.id));if(!avail.length){seen.clear();avail=pool}const q=avail[Math.floor(Math.random()*avail.length)];seen.add(q.id);return q}
-function ask(tile){phase='answer';const q=pickQ();if(!q){$('questionBody').innerHTML='<h3>題庫沒有可用題目</h3><button class="action" id="continueBtn">繼續</button>';$('continueBtn').onclick=nextTurn;return}questionNow={q,tile,answered:false,selected:null};$('quizSend').disabled=true;const unit=q.unit.startsWith('01')?'動物世界':'探索聲光世界';$('questionBody').innerHTML=`<div class="qmeta">📍${esc(tile.label)}｜${esc(unit)}</div><h3>${esc(q.question)}</h3><div class="answerGrid">${q.options.map((a,i)=>`<button class="answer" data-a="${i}">${'ABCD'[i]||i+1}. ${esc(a)}</button>`).join('')}</div><div id="result"></div>`;document.querySelectorAll('.answer').forEach(el=>el.onclick=()=>selectAnswer(Number(el.dataset.a)));$('quizMore').classList.remove('visible');requestAnimationFrame(fitQuiz);info(`${players[turn].name} 停在 ${tile.label} 關卡，請在右下角選答案！`)}
+function ask(tile){phase='answer';const q=pickQ();if(!q){$('questionBody').innerHTML='<h3>題庫沒有可用題目</h3><button class="action" id="continueBtn">繼續</button>';$('continueBtn').onclick=nextTurn;return}questionNow={q,tile,answered:false,selected:null};$('quizSend').disabled=true;const unit=q.unit.startsWith('01')?'動物世界':'探索聲光世界';$('questionBody').innerHTML=`<div class="qmeta">📍${esc(tile.label)}｜${esc(unit)}</div><h3>${esc(q.question)}</h3><div class="answerGrid">${q.options.map((a,i)=>`<button class="answer" data-a="${i}">${'ABCD'[i]||i+1}. ${esc(a)}</button>`).join('')}</div><div id="result"></div>`;document.querySelectorAll('.answer').forEach(el=>el.onclick=()=>selectAnswer(Number(el.dataset.a)));$('quizMore').classList.remove('visible');requestAnimationFrame(fitQuiz);info(`${players[turn].name} 停在 ${tile.label}，請先選答案，再按右下角送出！`)}
 function selectAnswer(i){
  if(phase!=='answer'||!questionNow||questionNow.answered)return;
  questionNow.selected=i;
@@ -195,7 +252,7 @@ function answer(i){
  questionNow.answered=true;
  $('quizSend').disabled=true;
  const q=questionNow.q,p=players[turn],correct=i===q.answer;
- if(correct)p.score+=10;
+ if(correct)p.score+=10;playSound(correct?'correct':'wrong');
  document.querySelectorAll('#questionBody .answer').forEach((el,j)=>{el.disabled=true;if(j===q.answer)el.classList.add('correct');else if(j===i)el.classList.add('wrong')});
  const explanation=q.explanation?.trim()||'原始題庫沒有提供這一題的詳解。';
  $('quizResultCard').innerHTML=`<h2>${correct?'🎉 恭喜答對！+10 分':'💪 再加油！'}</h2><p>正解：${'ABCD'[q.answer]||q.answer+1}．${esc(q.options[q.answer])}</p><div class="result-expl">📖 詳解：${esc(explanation)}</div><button class="action" id="continueBtn">✅ 完成，下一位玩家</button>`;
@@ -204,10 +261,40 @@ function answer(i){
  updateRoster();info(`${p.name} ${correct?'答對 +10 分':'答錯不扣分'}，請閱讀詳解。`);
 }
 
-const EVENTS={chance:[['🌟 助人為樂','熱心幫助同學整理教具',5],['📚 愛閱讀','你閱讀自然科學圖書',10],['🍀 幸運日','答題表現受到老師稱讚',8],['🌱 環保小尖兵','一起維護美麗的校園',6]],fate:[['📝 忘記帶文具','下次要檢查書包',-5],['🎉 合作任務','與同學合作完成挑戰',6],['🧹 值日生','主動整理教室',5],['⏰ 忘記時間','活動遲到要改進',-3]]};
-function eventCard(type){phase='card';$('chance').disabled=true;$('fate').disabled=true;const e=EVENTS[type][Math.floor(Math.random()*EVENTS[type].length)];const p=players[turn];p.score=Math.max(0,p.score+e[2]);$('toastTitle').textContent=`${type==='chance'?'⭐ 機會卡':'🔮 命運卡'}｜${e[0]}`;$('toastText').textContent=`${e[1]}。${e[2]>=0?'+':''}${e[2]} 分，${p.name} 現有 ${p.score} 分。`;$('toast').style.display='block';$('toastDone').onclick=()=>{$('toast').style.display='none';nextTurn()};updateRoster();info(`${p.name} 抽到${type==='chance'?'機會':'命運'}卡！`)}
+const EVENTS={
+ chance:[
+ ['🌟 助人為樂','主動幫同學整理教具',5],
+ ['📚 愛閱讀','讀完一本自然科學圖書',10],
+ ['🍀 幸運日','老師稱讚你上課專心',8],
+ ['🌱 環保小尖兵','幫忙整理校園垃圾分類',6],
+ ['💡 科學小博士','和同學分享科學新知',10],
+ ['🏃 運動健將','參與校園運動活動',5],
+ ['🤝 團隊合作','成功協助小組完成任務',8],
+ ['🎨 創意大師','製作精美的學習海報',6],
+ ['🎉 快樂星期五','用心完成本週學習任務',5],
+ ['🏅 服務楷模','擔任值日生表現良好',8],
+ ['🧠 勇於發問','提出一個有趣的科學問題',6],
+ ['🌈 友善校園','主動關心需要幫助的同學',10]
+ ],
+ fate:[
+ ['📝 忘記帶文具','下次記得檢查書包',-5],
+ ['🎉 合作任務','小組共同完成挑戰',6],
+ ['🧹 值日生','主動整理教室',5],
+ ['⏰ 忘記時間','活動遲到要注意時間',-3],
+ ['📖 作業忘記帶','提醒自己出門前檢查',-5],
+ ['🌟 意外收穫','在操場拾獲物品並送交失物招領',8],
+ ['🚰 節約用水','主動關閉忘記關的水龍頭',6],
+ ['💨 匆忙趕路','走廊奔跑需注意安全',-5],
+ ['🌳 校園守護者','參加綠化校園活動',8],
+ ['🎒 忘記整理書包','學習準備上課用品',-3],
+ ['⚽ 運動精神','比賽中展現良好運動家精神',6],
+ ['🔎 觀察高手','發現校園新的自然現象',8]
+ ]
+};
+function eventCard(type){playSound('card');phase='card';$('chance').disabled=true;$('fate').disabled=true;const e=EVENTS[type][Math.floor(Math.random()*EVENTS[type].length)];const p=players[turn];p.score=Math.max(0,p.score+e[2]);$('toastTitle').textContent=`${type==='chance'?'⭐ 機會卡':'🔮 命運卡'}｜${e[0]}`;$('toastText').textContent=`${e[1]}。${e[2]>=0?'+':''}${e[2]} 分，${p.name} 現有 ${p.score} 分。`;$('toast').style.display='block';$('toastDone').onclick=()=>{$('toast').style.display='none';nextTurn()};updateRoster();info(`${p.name} 抽到${type==='chance'?'機會':'命運'}卡！`)}
 $('chance').onclick=()=>{if(phase==='card-pick')eventCard('chance')};$('fate').onclick=()=>{if(phase==='card-pick')eventCard('fate')};
 function nextTurn(){$('quizSend').disabled=true;$('quizMore').classList.remove('visible');if(players.every(p=>p.finished)){finish();return}let j=turn;do{j=(j+1)%players.length}while(players[j].finished);turn=j;phase='roll';$('roll').disabled=false;updateRoster();info(`輪到 ${players[turn].name}，請點右側紅色「擲骰子」！`)}
 function finish(){phase='finished';$('quizSend').disabled=true;$('roll').disabled=true;let order=[...players].sort((a,b)=>b.score-a.score);$('quiz').querySelector('#questionBody').innerHTML=`<h3>🏆 校園大富翁結束！</h3>${order.map((p,i)=>`<div class="player">${['🥇','🥈','🥉','🏅'][i]} ${esc(p.name)}：${p.score}分</div>`).join('')}<button class="action" id="again">再玩一次</button>`;$('again').onclick=()=>$('newGame').click();info(`🎉 恭喜冠軍 ${order[0].name}！`);updateRoster()}
+drawTileLabels();
 updateRoster();
 </script></body></html>
