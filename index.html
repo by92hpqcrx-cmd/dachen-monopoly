@@ -250,6 +250,50 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .bank-import .import-label{font-size:11px;cursor:pointer;color:#136994}
 .bank-import input{font-size:10px;width:100%;max-width:100%;color:#3f4c56}
 .bank-import .small-note{font-size:10px;line-height:1.35;margin-top:5px}
+
+/* 2026 精緻校園插畫版：只調整美術、路線與關卡外觀 */
+body{background:linear-gradient(160deg,#edf7ff 0%,#e8f3ed 45%,#e6e6ff 100%);color:#263b49}
+.board-shell{padding:7px;border:4px solid #fff;border-radius:28px;background:#e1f1ff;box-shadow:0 10px 0 #abcad4,0 25px 60px #315c7e25}
+.map{background:
+ radial-gradient(ellipse at 80% 25%,#fffce7 0 10%,transparent 32%),
+ linear-gradient(to bottom,#a8deff 0%,#e7f5fc 25%,#bce4bf 25.1%,#8cc998 78%,#8abd8c 100%)}
+.map:before{background:repeating-linear-gradient(100deg,transparent 0 95px,#ffffff10 96px 100px),radial-gradient(circle at 52% 63%,#e8f2c680 0 16%,transparent 40%);opacity:.85}
+.map:after{content:'';position:absolute;inset:24% 0 0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 25% 74%,#65b57a55 0 16%,transparent 28%),radial-gradient(ellipse at 75% 55%,#74bf8b66 0 16%,transparent 35%)}
+.map-caption{left:33%;top:3%;width:38%;text-align:center;z-index:2;background:linear-gradient(135deg,#fffefa,#f4f8ff);border:.27cqw solid #fff;border-radius:1.8cqw;padding:.75cqw 1cqw;color:#2d6276;font-size:2cqw;letter-spacing:.1cqw;box-shadow:0 .4cqw 1.1cqw #477b9850}
+.map-caption span{display:block;font-size:1.06cqw;letter-spacing:0;margin-top:.25cqw;color:#6d89a0}
+.map-sun{position:absolute;right:10%;top:3%;font-size:5cqw;filter:drop-shadow(0 0 14px #ffeb8d);z-index:0}
+.cloud{opacity:.75;font-size:3cqw}
+.tree{font-size:4.2cqw;filter:drop-shadow(.45cqw .6cqw .22cqw #1d674d3c)}
+.building-block{border:.3cqw solid #ffffffa8;border-bottom:.65cqw solid #6d8b98;border-radius:.8cqw;background:linear-gradient(#fffdf4 0 25%,#ffdeca 25% 100%);box-shadow:.4cqw .9cqw .7cqw #2b5b5840;min-height:6cqw;padding-top:.8cqw}
+.building-block:before{left:-3%;width:106%;top:-1.7cqw;height:1.9cqw;transform:skewX(-9deg);background:linear-gradient(135deg,#8db7d4,#517f99);border:.24cqw solid #f5fbff}
+.building-block .name{font-size:1.15cqw;background:#f4f9ff;color:#386279;text-shadow:none;border:.18cqw solid #fff;box-shadow:0 .2cqw .4cqw #23445b21;padding:.27cqw .8cqw}
+.building-block .windows{margin:.35cqw}.building-block .windows i{width:1.8cqw;height:1.5cqw;border:.18cqw solid #fff;border-radius:.25cqw;background:linear-gradient(135deg,#e1f7ff,#81c8ed)}
+.building-block.a{left:14%;top:29%;width:27%;background:linear-gradient(#fff6e3 0 25%,#f9d2b8 25% 100%)}
+.building-block.b{left:53%;top:29%;width:27%;background:linear-gradient(#f6fcff 0 25%,#bfd8ec 25% 100%)}
+.building-block.c{left:80%;top:43%;width:14%;min-height:5.5cqw;background:#fff2c8}
+.building-block.d{left:61%;top:58%;width:24%;background:#f6dce7}
+.building-block.e{left:43%;top:80%;width:22%;background:#e6d9fb}
+.building-block.f{left:21%;top:80%;width:20%;background:#d9eafa}
+.building-block.g{left:70%;top:80%;width:17%;background:#ffdfdb}
+.field{left:22%;top:43%;width:36%;height:25%;border:.48cqw solid #ffffffe8;border-radius:48%;background:repeating-radial-gradient(ellipse at center,#7ccc8a 0 30%,#fff6e7 30.2% 31%,#da8e77 31.2% 37%,#fff8f0 37.2% 38%,#d79c88 38.2% 47%,#fff 47.2% 48%,#d19c86 48.2% 50%,transparent 50.4%);box-shadow:0 .6cqw 1cqw #31534232}
+.field:before{background:#96d88b;inset:17% 21%;box-shadow:inset 0 0 2cqw #5eab72}
+.field .field-name{font-size:1.7cqw;left:33%;top:38%;color:#21634f}
+.field .play,.field .soccer{font-size:2.3cqw}
+.stage-school{left:37%;top:39%;width:11%;height:4%;font-size:1.5cqw;box-shadow:0 .2cqw .4cqw #26443d30}
+.path-shadow{stroke:#62949680;stroke-width:64}
+.path-gold{stroke:#f6e5c4;stroke-width:56}
+.path-middle{stroke:#fffcf2;stroke-width:41}
+.path-line{stroke:#b5bfc7;stroke-width:3.2;stroke-dasharray:5 18}
+.cell{width:6.1%;height:7%;font-size:1.35cqw;border:.27cqw solid #fff;border-radius:1.1cqw;background:linear-gradient(150deg,#fffefa,#ffe9c8);color:#476071;box-shadow:0 .42cqw 0 #c89c76,0 .6cqw 1.1cqw #31546c38;z-index:5}
+.cell.question{background:linear-gradient(155deg,#fffefa,#ffe1b5)}
+.cell.chance{background:linear-gradient(145deg,#ffe6f1,#ef90b9);border-color:#fff;color:#8d3b70;text-shadow:none}
+.cell.fate{background:linear-gradient(145deg,#e3f8ff,#91bff0);border-color:#fff;color:#2c568e;text-shadow:none}
+.cell.start,.cell.finish{background:linear-gradient(145deg,#fff1b3,#f6b66c);border-color:#fff;color:#7d5731}
+.cell .symbol{font-size:2.2cqw}
+.cell.active{box-shadow:0 0 0 .48cqw #fff579,0 .42cqw 0 #ca9d6f,0 0 1.5cqw #ffefaa;z-index:7}
+.gate{font-size:1.35cqw;padding:.4cqw .7cqw;border:.24cqw solid white;background:linear-gradient(135deg,#537db8,#315c8b);box-shadow:0 .25cqw .7cqw #284c6b55;text-shadow:none;border-radius:.9cqw}
+.gate.front{left:10%;top:5%}.gate.back{left:89%;top:auto;bottom:4%}.gate span{font-size:1.0cqw}
+.board-shell,.player-area,.dice-area,.quiz-area{transition:box-shadow .2s}
 </style>
 </head>
 <body>
@@ -277,19 +321,25 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
  <div class="board-column">
  <section class="board-shell" aria-label="互動校園路線">
   <div class="map-scroll"><div class="map" id="map" aria-label="大成國小校園關卡地圖">
-   <div class="map-caption">🌈 大成國小校園冒險</div><div class="map-sun" aria-hidden="true">☀️</div><div class="map-rainbow" aria-hidden="true">🌈</div>
-   <div class="cloud" style="left:18%;top:2%">☁️</div><div class="cloud" style="left:72%;top:5%">☁️</div>
-   <div class="tree" style="left:2%;top:27%">🌳</div><div class="tree" style="left:8%;top:61%">🌲</div><div class="tree" style="left:71%;top:36%">🌳</div><div class="tree" style="left:88%;top:11%">🌲</div><div class="tree" style="left:5%;top:84%">🌳</div><div class="tree" style="left:24%;top:26%">🌳</div><div class="tree" style="left:58%;top:32%">🌳</div><div class="tree" style="left:77%;top:68%">🌳</div>
-   <div class="building-block a"><span class="name">A 棟｜大成樓</span><div class="windows"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-   <div class="building-block b"><span class="name">B 棟｜忠孝樓</span><div class="windows"><i></i><i></i><i></i><i></i><i></i></div></div>
-   <div class="field"><span class="field-name">操場</span><span class="play">🏃🏻</span><span class="soccer">⚽</span><span class="field-kids" aria-hidden="true">👧🏻 🧒🏻 🏀</span></div><div class="stage-school">🎤</div>
-   <div class="building-block c"><span class="name">C 棟</span><div class="windows"><i></i><i></i></div></div>
-   <div class="building-block d"><span class="name">D 棟｜活動中心</span><div class="windows"><i></i><i></i></div></div>
-   <div class="building-block e"><span class="name">E 棟｜仁愛樓</span><div class="windows"><i></i><i></i><i></i></div></div>
-   <div class="building-block f"><span class="name">F 棟｜信義樓</span><div class="windows"><i></i><i></i><i></i><i></i></div></div>
-   <div class="building-block g"><span class="name">G 棟｜和平樓</span><div class="windows"><i></i><i></i></div></div>
-   <span class="map-little" style="left:31%;top:43%">👦🏻👧🏻</span><span class="map-little" style="left:49%;top:54%">🏀</span><span class="map-little" style="left:71%;top:46%">👩🏻‍🏫</span><span class="map-little" style="left:9%;top:48%">🌼</span><span class="map-little" style="left:72%;top:87%">🌻</span><span class="map-little" style="left:18%;top:32%">🌼🌸</span><span class="map-little" style="left:57%;top:68%">🪻🌷</span><span class="map-little" style="left:87%;top:79%">🌷🌼</span><span class="map-little" style="left:8%;top:69%">👦🏻</span><span class="map-little" style="left:85%;top:57%">👧🏻</span>
-   <div class="gate front">🚩 前校門<span>起點 ↓</span></div><div class="gate back">🏁 後校門<span>🏁 終點</span></div>
+   <div class="map-caption">✦ 大成校園奇幻探險 ✦ <span>20 個班級關卡 · 8 個驚喜挑戰</span></div>
+   <div class="map-sun" aria-hidden="true">☀️</div>
+   <div class="cloud" style="left:12%;top:5%">☁️</div><div class="cloud" style="left:70%;top:7%">☁️</div>
+   <div class="tree" style="left:3%;top:32%">🌲</div><div class="tree" style="left:9%;top:78%">🌳</div><div class="tree" style="left:89%;top:35%">🌳</div><div class="tree" style="left:88%;top:78%">🌲</div>
+   <div class="tree" style="left:54%;top:30%">🌳</div>
+   <div class="building-block a"><span class="name">大成樓</span><div class="windows"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+   <div class="building-block b"><span class="name">忠孝樓</span><div class="windows"><i></i><i></i><i></i><i></i><i></i></div></div>
+   <div class="field"><span class="field-name">陽光操場</span><span class="play">🏃</span><span class="soccer">⚽</span></div>
+   <div class="stage-school">🎤</div>
+   <div class="building-block c"><span class="name">科學教室</span><div class="windows"><i></i><i></i></div></div>
+   <div class="building-block d"><span class="name">活動中心</span><div class="windows"><i></i><i></i></div></div>
+   <div class="building-block e"><span class="name">仁愛樓</span><div class="windows"><i></i><i></i><i></i><i></i></div></div>
+   <div class="building-block f"><span class="name">信義樓</span><div class="windows"><i></i><i></i><i></i><i></i></div></div>
+   <div class="building-block g"><span class="name">和平樓</span><div class="windows"><i></i><i></i></div></div>
+   <span class="map-little" style="left:29%;top:36%">👩🏻‍🏫 🧒</span>
+   <span class="map-little" style="left:52%;top:59%">⚽ 🌼</span>
+   <span class="map-little" style="left:30%;top:81%">🌻 🌷</span>
+   <span class="map-little" style="left:76%;top:81%">🌷 🦋</span>
+   <div class="gate front">🚩 前校門<span>起點</span></div><div class="gate back">🏁 後校門<span>終點</span></div>
    <svg class="map-svg" viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true"><path id="pathShadow" class="path-shadow"/><path id="pathGold" class="path-gold"/><path id="pathMiddle" class="path-middle"/><path id="pathLine" class="path-line"/></svg>
    <div id="cells" aria-label="關卡格子"></div><svg id="tokenLayer" viewBox="0 0 1200 850" preserveAspectRatio="none" aria-label="玩家頭像棋子"></svg>
   </div></div>
@@ -335,18 +385,22 @@ const mapEl=$('map');
 const coords=[];
 const types=[];
 function point(x,y,name){coords.push({x,y,name});}
-point(612,88,'前校門');
-['310','309','308','307','306','305','304','303'].forEach((name,i)=>point(620-i*70,170,name));
-point(130,240,'302');
-['301','402','412','406','413','409','圖書室','電腦室1','電腦室2','健康中心','資源1','資源2','資源3'].forEach((name,i)=>point(200+i*75,248,name));
-['音樂A','英語D','活動中心'].forEach((name,i)=>point(1100,327+i*80,name));
-['411','410','408','407','404','403','401','209','208','205','206','110','109'].forEach((name,i)=>point(1100-i*80,566,name));
-point(140,645,'107');
-['613','612','611','610','609','608','607','606','605','604','603','602','601'].forEach((name,i)=>point(210+i*75,646,name));
-point(1110,728,'512');
-['自然A','自然B','自然C','自然D','509','507','503','201'].forEach((name,i)=>point(1030-i*70,740,name));
-point(540,808,'後校門');
-const SPECIALS={4:'chance',12:'fate',20:'chance',26:'fate',34:'chance',42:'fate',50:'chance',57:'fate'};
+// 精簡路線：起點 1 格 + 20 個班級答題格 + 4 機會 + 4 命運 + 終點 1 格。
+const ROUTE=[
+ [110,155,'前校門'],
+ [225,155,'501'],[335,155,'502'],[445,155,'503'],[555,155,'504'],
+ [665,155,'505'],[775,155,'506'],[885,155,'507'],[995,155,'508'],[1095,155,'509'],
+ [1095,280,'510'],[1095,400,'511'],[1095,520,'512'],
+ [985,520,'513'],[875,520,'514'],[765,520,'515'],[655,520,'516'],
+ [545,520,'517'],[435,520,'518'],[325,520,'519'],[215,520,'520'],[110,520,'521'],
+ [110,675,'522'],
+ [250,730,'523'],[390,730,'524'],[530,730,'525'],
+ [670,730,'526'],[810,730,'527'],[950,730,'528'],
+ [1080,730,'後校門']
+];
+ROUTE.forEach(([x,y,name])=>point(x,y,name));
+// 特殊格 8 個，其餘恰好 20 個班級題目格。
+const SPECIALS={3:'chance',7:'fate',10:'chance',13:'fate',17:'chance',20:'fate',24:'chance',27:'fate'};
 const cells=coords.map((p,i)=>({...p,id:i,type:i===0?'start':i===coords.length-1?'finish':SPECIALS[i]||'question'}));
 const PALETTE=['#e85d6c','#459ee6','#43ad61','#b68be5'];
 const CHANCE=[
