@@ -413,7 +413,7 @@ function drawTokens(){
   const clip=svg('clipPath',{id:'clipP'+i});
   clip.append(svg('circle',{cx:x,cy:y,r:portraitR}));
   const outer=svg('circle',{class:'outline',cx:x,cy:y,r});
-  const image=svg('image',{x:x-portraitR,y:y-portraitR,width:portraitR*2,height:portraitR*2,href:AVATARS[i],'clip-path':'url(#clipP'+i+')'});
+  const image=svg('image',{x:x-portraitR,y:y-portraitR,width:portraitR*2,height:portraitR*2,href:p.avatar||AVATARS[i],'clip-path':'url(#clipP'+i+')'});
   const rim=svg('circle',{cx:x,cy:y,r:portraitR,fill:'none',stroke:'#ffffff','stroke-width':3});
   const badge=svg('circle',{cx:x+25,cy:y+24,r:12,fill:PALETTE[i],stroke:'white','stroke-width':3});
   const num=svg('text',{x:x+25,y:y+24,'font-size':16,'font-weight':'1000',fill:'white','text-anchor':'middle','dominant-baseline':'central'});
@@ -425,22 +425,64 @@ function drawTokens(){
  if(players.length)$('cell-'+players[turn].pos)?.classList.add('active');
 }
 function renderRoster(){
- $('playerList').innerHTML=players.map((p,i)=>`<div class="player-row ${turn===i&&phase!=='setup'?'active':''} ${p.done?'done':''}"><img src="${AVATARS[i]}" alt="玩家${i+1}頭像"><span class="name">${escapeHTML(p.name)}</span><span class="score">${p.score} 分</span></div>`).join('')||'<p>請先設定玩家。</p>';
+ $('playerList').innerHTML=players.map((p,i)=>`<div class="player-row ${turn===i&&phase!=='setup'?'active':''} ${p.done?'done':''}"><img src="${escapeHTML(p.avatar||AVATARS[i])}" alt="玩家${i+1}頭像"><span class="name">${escapeHTML(p.name)}</span><span class="score">${p.score} 分</span></div>`).join('')||'<p>請先設定玩家。</p>';
  $('turnText').textContent=phase==='setup'?'準備開始！':phase==='finished'?'全部玩家已抵達後校門':`${players[turn]?.name||''} ${players[turn]?.done?'已抵達後校門':'正在挑戰中'}`;
  drawTokens();
 }
 function setPhase(p){phase=p;$('rollButton').disabled=p!=='roll';$('chanceButton').disabled=p!=='chance-pick';$('fateButton').disabled=p!=='fate-pick';$('chanceButton').classList.toggle('ready',p==='chance-pick');$('fateButton').classList.toggle('ready',p==='fate-pick');$('submitButton').disabled=p!=='answer'||selected===null;}
 function showIdle(title,text){$('quizCard').innerHTML=`<div class="quiz-idle"><span class="emoji">${title}</span><p>${escapeHTML(text)}</p></div>`;$('submitButton').disabled=true;}
-function showDialog(title,html,btnLabel,callback){$('dialogTitle').textContent=title;$('dialogContent').innerHTML=html;$('dialogAction').textContent=btnLabel||'繼續';$('dialogBack').classList.add('open');$('dialogAction').onclick=()=>{$('dialogBack').classList.remove('open');callback?.();};}
-function startSetup(){
- if(players.length&&phase!=='finished'&&!confirm('確定重新開始？目前的分數與位置將歸零。'))return;
- setPhase('setup');players=[];turn=0;lastQuestion=null;selected=null;questionHistory.clear();renderRoster();setDie(1);showIdle('🔬','停在班級格就會出現隨機題目。');
- const html=`<p>2～4 人輪流遊戲。請輸入玩家名稱，從前校門出發！</p><label for="playerCount">玩家人數</label><select id="playerCount"><option value="2">2 人</option><option value="3">3 人</option><option value="4">4 人</option></select><div class="name-fields" id="nameFields"></div><p class="small">不需要輸入班級或學生個資；可使用暱稱。</p>`;
- showDialog('🏫 開始校園冒險',html,'🚩 開始遊戲',()=>begin());
- const sel=$('playerCount');sel.addEventListener('change',renderNameFields);renderNameFields();
+function showDialog(title,html,btnLabel,callback){$('dialogTitle').textContent=title;$('dialogContent').innerHTML=html;$('dialogAction').textContent=btnLabel||'繼續';$('dialogBack').classList.add('open');$('dialogAction').onclick=()=>{if(callback?.()===false)return;$('dialogBack').classList.remove('open');};}
+let fundeskRoster=null;
+const fundeskToken=new URL(location.href).searchParams.get('fundeskToken');
+const fundeskSource=window.opener;
+if(fundeskToken&&/^[a-f0-9]{32}$/.test(fundeskToken)&&fundeskSource){
+ window.addEventListener('message',event=>{
+  if(event.origin!==location.origin||event.source!==fundeskSource)return;
+  const data=event.data;
+  if(!data||data.kind!=='fundesk-monopoly-roster'||data.token!==fundeskToken||!Array.isArray(data.classes))return;
+  // 不接收積點、備註、出勤等其他教師資料。
+  fundeskRoster=data.classes.slice(0,50).filter(c=>typeof c.code==='string'&&Array.isArray(c.students))
+    .map(c=>({code:c.code.slice(0,40),label:String(c.label||c.code).slice(0,40),
+      students:c.students.slice(0,70).filter(st=>st&&typeof st.id==='string')
+        .map(st=>({id:st.id.slice(0,120),no:String(st.no||'').slice(0,5),name:String(st.name||'').slice(0,50),
+         avatar:typeof st.avatar==='string'&&st.avatar.startsWith(location.origin+'/science-fundesk/avatars/')?st.avatar:''}))}));
+  if(phase==='setup')startSetup(true);
+ });
+ // 採一次性的授權握手，不需要資料庫公開讀取權限。
+ fundeskSource.postMessage({kind:'fundesk-monopoly-ready',token:fundeskToken},location.origin);
 }
-function renderNameFields(){const count=Number($('playerCount').value);$('nameFields').innerHTML=Array.from({length:count},(_,i)=>`<input class="player-name" maxlength="12" value="玩家${i+1}" aria-label="玩家${i+1}名稱">`).join('');}
-function begin(){const names=[...document.querySelectorAll('.player-name')].map((n,i)=>n.value.trim()||`玩家${i+1}`);players=names.map(name=>({name,pos:0,score:0,done:false}));turn=0;setPhase('roll');renderRoster();showIdle('🎲','請點右側擲骰子。停在一般格就要答題，機會／命運格只抽卡。');announce(`🎲 輪到 ${players[turn].name}！請擲骰子。`);}
+function startSetup(fromRoster=false){
+ if(!fromRoster&&players.length&&phase!=='finished'&&!confirm('確定重新開始？目前的分數與位置將歸零。'))return;
+ setPhase('setup');players=[];turn=0;lastQuestion=null;selected=null;questionHistory.clear();renderRoster();setDie(1);showIdle('🔬','停在班級格就會出現隨機題目。');
+ const classOptions=(fundeskRoster||[]).map(c=>`<option value="${escapeHTML(c.code)}">${escapeHTML(c.label)}（${c.students.length} 人）</option>`).join('');
+ const html=`<p>2～4 人輪流遊戲，先選班級，再挑選參加的學生。</p><label for="gameRosterMode">玩家來源</label><select id="gameRosterMode"><option value="manual">手動輸入玩家</option>${fundeskRoster?.length?'<option value="fundesk" selected>FunDesk 學生名單</option>':''}</select>
+ <div id="gameClassWrap" style="display:none"><label for="gameClass">選擇班級</label><select id="gameClass">${classOptions}</select></div>
+ <label for="playerCount">玩家人數</label><select id="playerCount"><option value="2">2 人</option><option value="3">3 人</option><option value="4">4 人</option></select><div class="name-fields" id="nameFields"></div><p class="small">FunDesk 名單僅用於本次遊戲選人，不會公開儲存學生資料。</p>`;
+ showDialog('🏫 開始校園冒險',html,'🚩 開始遊戲',()=>begin());
+ const sel=$('playerCount');sel.addEventListener('change',renderNameFields);
+ $('gameRosterMode').onchange=renderNameFields;
+ $('gameClass').onchange=renderNameFields;
+ renderNameFields();
+}
+function renderNameFields(){
+ const count=Number($('playerCount').value),isFun=$('gameRosterMode')?.value==='fundesk';
+ $('gameClassWrap').style.display=isFun?'block':'none';
+ const roster=isFun?fundeskRoster?.find(c=>c.code===$('gameClass')?.value)?.students||[]:[];
+ $('nameFields').innerHTML=isFun?Array.from({length:count},(_,i)=>`<label>玩家 ${i+1}<select class="player-student"><option value="">請選擇學生</option>${roster.map(st=>`<option value="${escapeHTML(st.id)}">${escapeHTML(st.no)} 號 ${escapeHTML(st.name)}</option>`).join('')}</select></label>`).join(''):Array.from({length:count},(_,i)=>`<input class="player-name" maxlength="12" value="玩家${i+1}" aria-label="玩家${i+1}名稱">`).join('');
+}
+function begin(){
+ const isFun=$('gameRosterMode')?.value==='fundesk';
+ let entries;
+ if(isFun){
+  const code=$('gameClass')?.value,roster=fundeskRoster?.find(c=>c.code===code)?.students||[];
+  const ids=[...document.querySelectorAll('.player-student')].map(x=>x.value);
+  if(ids.some(id=>!id)||new Set(ids).size!==ids.length){alert('請為每位玩家選擇不同的學生。');return false}
+  entries=ids.map(id=>roster.find(st=>st.id===id));
+  if(entries.some(e=>!e)){alert('學生名單已變更，請重新選擇。');return false}
+ }else{
+  entries=[...document.querySelectorAll('.player-name')].map((n,i)=>({name:n.value.trim()||`玩家${i+1}`,avatar:''}));
+ }
+ players=entries.map(st=>({name:st.name,avatar:st.avatar||'',pos:0,score:0,done:false}));turn=0;setPhase('roll');renderRoster();showIdle('🎲','請點右側擲骰子。停在一般格就要答題，機會／命運格只抽卡。');announce(`🎲 輪到 ${players[turn].name}！請擲骰子。`);}
 function pickQuestion(){const unit=$('unitSelect').value;const pool=questionPoolFor(unit);if(!pool.length)return null;let remaining=pool.filter(q=>!questionHistory.has(q.id));if(!remaining.length){pool.forEach(q=>questionHistory.delete(q.id));remaining=pool;}const q=remaining[rand(remaining.length)];questionHistory.add(q.id);return q;}
 function askQuestion(tile){
  const q=pickQuestion();if(!q){showDialog('題庫沒有題目','<p>目前選取的題庫沒有可用題目。</p>','下一位',nextTurn);return;}
@@ -482,7 +524,7 @@ async function rollDice(){
  askQuestion(tile);
 }
 function nextTurn(){if(players.every(p=>p.done)){finish();return;}let next=turn;do{next=(next+1)%players.length;}while(players[next].done);turn=next;setPhase('roll');renderRoster();showIdle('🎲','下一位玩家請擲骰子。一般格要答題；特殊格只抽卡。');announce(`輪到 ${players[turn].name}，請擲骰子！`);}
-function finish(){setPhase('finished');const ranked=[...players].sort((a,b)=>b.score-a.score);renderRoster();showIdle('🏆','所有玩家都抵達後校門！');sound([523,659,784,1047],.23);confetti();showDialog('🏆 校園大富翁排行榜',ranked.map((p,i)=>`<div class="rank"><span>${['🥇','🥈','🥉','🏅'][i]}</span><img src="${AVATARS[players.indexOf(p)]}" alt=""><span>${escapeHTML(p.name)}</span><strong>${p.score} 分</strong></div>`).join(''),'再玩一次',startSetup);announce(`🎉 恭喜 ${ranked[0].name} 獲得本局最高分 ${ranked[0].score} 分！`);}
+function finish(){setPhase('finished');const ranked=[...players].sort((a,b)=>b.score-a.score);renderRoster();showIdle('🏆','所有玩家都抵達後校門！');sound([523,659,784,1047],.23);confetti();showDialog('🏆 校園大富翁排行榜',ranked.map((p,i)=>`<div class="rank"><span>${['🥇','🥈','🥉','🏅'][i]}</span><img src="${escapeHTML(p.avatar||AVATARS[players.indexOf(p)])}" alt=""><span>${escapeHTML(p.name)}</span><strong>${p.score} 分</strong></div>`).join(''),'再玩一次',startSetup);announce(`🎉 恭喜 ${ranked[0].name} 獲得本局最高分 ${ranked[0].score} 分！`);}
 $('rollButton').onclick=rollDice;
 $('submitButton').onclick=submitAnswer;
 $('chanceButton').onclick=()=>drawEvent('chance');
