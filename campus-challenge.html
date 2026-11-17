@@ -445,16 +445,16 @@ body.font-standard .app,body.font-standard .modal{font-family:'Noto Sans TC','Mi
 }
 
 
-/* 2026-11-17 FunDesk 校園大富翁：棋盤置頂，控制左下，黑板右下。覆蓋過往寬螢幕左右切版。 */
+/* 2026-11-17 FunDesk 校園大富翁：棋盤置頂，黑板左下，控制右下。覆蓋過往寬螢幕左右切版。 */
 .app > .board{display:block;position:relative;width:100%;max-width:100%;grid-column:1!important;grid-row:1!important}
-.app > .bottom-panels{display:grid!important;grid-template-columns:minmax(300px,1fr) minmax(0,1.35fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:12px;width:100%;min-width:0;margin-top:12px;align-items:stretch}
-.app > .bottom-panels > .toolbar{grid-column:1!important;grid-row:1!important;min-width:0;width:100%;height:100%;min-height:0;max-width:none;order:1}
-.app > .bottom-panels > .blackboard{grid-column:2!important;grid-row:1!important;min-width:0;width:100%;height:100%;min-height:0;max-height:none;order:2;position:relative}
+.app > .bottom-panels{display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(300px,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:12px;width:100%;min-width:0;margin-top:12px;align-items:stretch}
+.app > .bottom-panels > .toolbar{grid-column:2!important;grid-row:1!important;min-width:0;width:100%;height:100%;min-height:0;max-width:none;order:2}
+.app > .bottom-panels > .blackboard{grid-column:1!important;grid-row:1!important;min-width:0;width:100%;height:100%;min-height:0;max-height:none;order:2;position:relative;order:1}
 .app:fullscreen{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,64fr) minmax(0,36fr)!important;width:100vw!important;max-width:none!important;height:100dvh!important;min-height:0!important;overflow:hidden!important;padding:7px 10px!important;gap:7px!important}
 .app:fullscreen > .board{grid-column:1!important;grid-row:1!important;position:relative!important;justify-self:center!important;align-self:center!important;width:auto!important;height:100%!important;max-width:100%!important;max-height:100%!important;aspect-ratio:1672/941!important;margin:0 auto!important;min-height:0!important}
-.app:fullscreen > .bottom-panels{display:grid!important;grid-column:1!important;grid-row:2!important;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)!important;grid-template-rows:minmax(0,1fr)!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;gap:8px!important;align-items:stretch!important}
-.app:fullscreen > .bottom-panels > .toolbar{grid-column:1!important;grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;margin:0!important;padding:7px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.15fr)!important;grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,.55fr)!important;gap:5px!important}
-.app:fullscreen > .bottom-panels > .blackboard{grid-column:2!important;grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;margin:0!important;padding:8px 12px!important;display:flex!important;flex-direction:column!important}
+.app:fullscreen > .bottom-panels{display:grid!important;grid-column:1!important;grid-row:2!important;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;margin:0!important;gap:8px!important;align-items:stretch!important}
+.app:fullscreen > .bottom-panels > .toolbar{grid-column:2!important;grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;margin:0!important;padding:7px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.15fr)!important;grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,.55fr)!important;gap:5px!important}
+.app:fullscreen > .bottom-panels > .blackboard{grid-column:1!important;grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;margin:0!important;padding:8px 12px!important;display:flex!important;flex-direction:column!important}
 .app:fullscreen .toolbar > #setup{grid-column:1!important;grid-row:1!important}
 .app:fullscreen .toolbar > #begin{grid-column:2!important;grid-row:1!important}
 .app:fullscreen .toolbar > #score{grid-column:3!important;grid-row:1!important}
