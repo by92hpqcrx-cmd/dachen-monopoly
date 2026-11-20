@@ -487,6 +487,125 @@ body.font-standard .app,body.font-standard .modal{font-family:'Noto Sans TC','Mi
 .bank-activity-group .activity-name{flex:1;font-size:14px;font-weight:800}
 .bank-activity-group .activity-count{font-size:12px;white-space:nowrap}
 @media(max-width:700px){.bank-cascade,.bank-activity-group .bank-units{grid-template-columns:1fr}}
+
+/* 2026-11-20 右側集中控制台：左側棋盤滿版 */
+@media(min-width:851px){
+ .app,.app:not(:fullscreen),.app:fullscreen{
+  display:grid!important;
+  grid-template-columns:minmax(0, 72fr) minmax(300px, 28fr)!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  align-items:stretch!important;
+  gap:10px!important;
+  width:100%!important;max-width:none!important;
+  height:100dvh!important;min-height:0!important;
+  overflow:hidden!important;padding:8px!important;
+  box-sizing:border-box!important
+ }
+ .app>.board,.app:fullscreen>.board{
+  grid-column:1!important;grid-row:1!important;
+  width:100%!important;height:100%!important;
+  max-width:none!important;max-height:none!important;
+  min-width:0!important;min-height:0!important;
+  aspect-ratio:auto!important;align-self:stretch!important;
+  border-radius:15px!important;overflow:hidden!important
+ }
+ .app>.board>#campusApprovedBoard,.app:fullscreen>.board>#campusApprovedBoard{
+  width:100%!important;height:100%!important;object-fit:fill!important
+ }
+ .app>.bottom-panels,.app:fullscreen>.bottom-panels{
+  grid-column:2!important;grid-row:1!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:stretch!important;
+  gap:9px!important;min-height:0!important;min-width:0!important;
+  height:100%!important;max-width:none!important;overflow:hidden!important
+ }
+ .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{
+  position:relative!important;inset:auto!important;
+  grid-row:auto!important;grid-column:auto!important;
+  order:0!important;flex:0 0 42%!important;
+  width:100%!important;height:auto!important;
+  max-width:none!important;max-height:none!important;
+  min-width:0!important;min-height:0!important;
+  margin:0!important;padding:10px!important;
+  overflow:hidden!important
+ }
+ .app>.bottom-panels>.blackboard .bb-body{
+  min-height:0!important;overflow:auto!important
+ }
+ .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{
+  position:relative!important;inset:auto!important;
+  grid-row:auto!important;grid-column:auto!important;
+  order:1!important;flex:1 1 auto!important;
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  align-content:start!important;align-items:stretch!important;
+  gap:8px!important;margin:0!important;padding:9px!important;
+  width:100%!important;height:auto!important;min-height:0!important;
+  max-width:none!important;max-height:none!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  border-radius:15px!important;box-sizing:border-box!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column{
+  display:flex!important;flex-direction:column!important;
+  min-width:0!important;width:auto!important;
+  gap:5px!important;padding:7px!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column h3{
+  font-size:clamp(13px,1vw,18px)!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.ctl{
+  min-width:0!important;min-height:38px!important;
+  font-size:clamp(12px,.85vw,17px)!important;
+  padding:6px 4px!important;white-space:normal!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.board-player-roster{
+  grid-template-columns:1fr!important;min-height:60px!important;
+  max-height:170px!important;overflow:auto!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.compact-bank{
+  font-size:clamp(12px,.85vw,16px)!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap{
+  flex-wrap:wrap!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck{
+  min-width:65px!important;flex:1 1 40%!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck b{
+  font-size:clamp(13px,1vw,19px)!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck small{
+  font-size:11px!important
+ }
+}
+@media(min-width:851px) and (max-width:1150px){
+ .app,.app:not(:fullscreen),.app:fullscreen{
+  grid-template-columns:minmax(0, 66fr) minmax(290px, 34fr)!important
+ }
+}
+@media(max-width:850px){
+ .app,.app:not(:fullscreen),.app:fullscreen{
+  display:flex!important;flex-direction:column!important;
+  width:100%!important;height:auto!important;min-height:100dvh!important;
+  overflow:auto!important
+ }
+ .app>.board,.app:fullscreen>.board{
+  flex:0 0 auto!important;aspect-ratio:1672/941!important;
+  width:100%!important;height:auto!important
+ }
+ .app>.bottom-panels,.app:fullscreen>.bottom-panels{
+  display:flex!important;flex-direction:column!important;gap:9px!important;width:100%!important
+ }
+ .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{
+  order:0!important;position:relative!important;inset:auto!important;
+  width:100%!important;height:320px!important;min-height:260px!important;
+  grid-column:auto!important;grid-row:auto!important
+ }
+ .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{
+  order:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-column:auto!important;grid-row:auto!important;width:100%!important;
+  height:auto!important;max-height:none!important;overflow:visible!important
+ }
+}
 </style><style id="campusAnswerFocus20261120">
 /* Full-screen in-page blackboard: reliable in iPad/Safari even without Fullscreen API */
 body.campus-answer-focus{overflow:hidden!important}
