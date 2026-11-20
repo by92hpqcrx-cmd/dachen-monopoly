@@ -488,124 +488,6 @@ body.font-standard .app,body.font-standard .modal{font-family:'Noto Sans TC','Mi
 .bank-activity-group .activity-count{font-size:12px;white-space:nowrap}
 @media(max-width:700px){.bank-cascade,.bank-activity-group .bank-units{grid-template-columns:1fr}}
 
-/* 2026-11-20 右側集中控制台：左側棋盤滿版 */
-@media(min-width:851px){
- .app,.app:not(:fullscreen),.app:fullscreen{
-  display:grid!important;
-  grid-template-columns:minmax(0, 72fr) minmax(300px, 28fr)!important;
-  grid-template-rows:minmax(0,1fr)!important;
-  align-items:stretch!important;
-  gap:10px!important;
-  width:100%!important;max-width:none!important;
-  height:100dvh!important;min-height:0!important;
-  overflow:hidden!important;padding:8px!important;
-  box-sizing:border-box!important
- }
- .app>.board,.app:fullscreen>.board{
-  grid-column:1!important;grid-row:1!important;
-  width:100%!important;height:100%!important;
-  max-width:none!important;max-height:none!important;
-  min-width:0!important;min-height:0!important;
-  aspect-ratio:auto!important;align-self:stretch!important;
-  border-radius:15px!important;overflow:hidden!important
- }
- .app>.board>#campusApprovedBoard,.app:fullscreen>.board>#campusApprovedBoard{
-  width:100%!important;height:100%!important;object-fit:fill!important
- }
- .app>.bottom-panels,.app:fullscreen>.bottom-panels{
-  grid-column:2!important;grid-row:1!important;
-  display:flex!important;flex-direction:column!important;
-  align-items:stretch!important;
-  gap:9px!important;min-height:0!important;min-width:0!important;
-  height:100%!important;max-width:none!important;overflow:hidden!important
- }
- .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{
-  position:relative!important;inset:auto!important;
-  grid-row:auto!important;grid-column:auto!important;
-  order:0!important;flex:0 0 42%!important;
-  width:100%!important;height:auto!important;
-  max-width:none!important;max-height:none!important;
-  min-width:0!important;min-height:0!important;
-  margin:0!important;padding:10px!important;
-  overflow:hidden!important
- }
- .app>.bottom-panels>.blackboard .bb-body{
-  min-height:0!important;overflow:auto!important
- }
- .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{
-  position:relative!important;inset:auto!important;
-  grid-row:auto!important;grid-column:auto!important;
-  order:1!important;flex:1 1 auto!important;
-  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  align-content:start!important;align-items:stretch!important;
-  gap:8px!important;margin:0!important;padding:9px!important;
-  width:100%!important;height:auto!important;min-height:0!important;
-  max-width:none!important;max-height:none!important;
-  overflow-x:hidden!important;overflow-y:auto!important;
-  border-radius:15px!important;box-sizing:border-box!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column{
-  display:flex!important;flex-direction:column!important;
-  min-width:0!important;width:auto!important;
-  gap:5px!important;padding:7px!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column h3{
-  font-size:clamp(13px,1vw,18px)!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column>.ctl{
-  min-width:0!important;min-height:38px!important;
-  font-size:clamp(12px,.85vw,17px)!important;
-  padding:6px 4px!important;white-space:normal!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column>.board-player-roster{
-  grid-template-columns:1fr!important;min-height:60px!important;
-  max-height:170px!important;overflow:auto!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column>.compact-bank{
-  font-size:clamp(12px,.85vw,16px)!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap{
-  flex-wrap:wrap!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck{
-  min-width:65px!important;flex:1 1 40%!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck b{
-  font-size:clamp(13px,1vw,19px)!important
- }
- .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck small{
-  font-size:11px!important
- }
-}
-@media(min-width:851px) and (max-width:1150px){
- .app,.app:not(:fullscreen),.app:fullscreen{
-  grid-template-columns:minmax(0, 66fr) minmax(290px, 34fr)!important
- }
-}
-@media(max-width:850px){
- .app,.app:not(:fullscreen),.app:fullscreen{
-  display:flex!important;flex-direction:column!important;
-  width:100%!important;height:auto!important;min-height:100dvh!important;
-  overflow:auto!important
- }
- .app>.board,.app:fullscreen>.board{
-  flex:0 0 auto!important;aspect-ratio:1672/941!important;
-  width:100%!important;height:auto!important
- }
- .app>.bottom-panels,.app:fullscreen>.bottom-panels{
-  display:flex!important;flex-direction:column!important;gap:9px!important;width:100%!important
- }
- .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{
-  order:0!important;position:relative!important;inset:auto!important;
-  width:100%!important;height:320px!important;min-height:260px!important;
-  grid-column:auto!important;grid-row:auto!important
- }
- .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{
-  order:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  grid-column:auto!important;grid-row:auto!important;width:100%!important;
-  height:auto!important;max-height:none!important;overflow:visible!important
- }
-}
 </style><style id="campusAnswerFocus20261120">
 /* Full-screen in-page blackboard: reliable in iPad/Safari even without Fullscreen API */
 body.campus-answer-focus{overflow:hidden!important}
@@ -743,7 +625,133 @@ body.campus-answer-focus #questionBoard{position:fixed!important;inset:0!importa
 }
 .app>.board>#tokens{z-index:10!important}
 .app>.board>.campus-illustration,.app>.board>.campus-new-track{display:none!important}
-</style></head><body><div class="app"><div class="board" id="board"><img class="campus-board-confirmed" id="campusApprovedBoard" src="./campus-board-illustration.jpg?v=20261120-fix2" alt="校園大富翁20格精美插畫棋盤"><button class="compact-bank" type="button" aria-label="選擇自然或社會題庫" data-panel="bank"><strong id="bankSubjectLabel">📚 自然題庫</strong><span id="bankSummary">4 單元 · 12 活動</span><small>點此選擇活動</small></button><button class="hotspot players-hot" aria-label="從 FunDesk 選玩家" title="從 FunDesk 選玩家" data-panel="players"></button><button class="hotspot stats-hot" aria-label="查看玩家資訊" title="查看玩家資訊" data-panel="stats"></button><div class="board-ui deck-wrap" id="deckWrap"><button class="deck chance" id="chanceDeckBtn" aria-label="查看機會卡說明"><span class="tag">抽卡區</span><b>⭐ 機會</b><small id="chanceDeckText">點此查看機會卡說明</small></button><button class="deck fate" id="fateDeckBtn" aria-label="查看命運卡說明"><span class="tag">抽卡區</span><b>🎴 命運</b><small id="fateDeckText">點此查看命運卡說明</small></button></div><div class="board-player-roster" id="boardPlayerRoster" aria-live="polite" aria-label="遊戲玩家頭像與姓名"></div><div class="status-card"><div class="status-card-title">🌟 闖關進度</div><div id="turnSummary">請先選擇題庫與玩家</div><div id="briefRanking">玩家名單準備中</div></div><div id="tokens"></div></div><div class="bottom-panels"><section class="blackboard" id="questionBoard" aria-live="polite"><div class="bb-head"><span id="bbTitle">黑板作答區</span><span id="bbBadge">作答區</span></div><div class="bb-body" id="bbBody"></div><div class="bb-actions" id="bbActions"></div></section><section class="toolbar"><button class="ctl purple" id="setup">⚙ 題庫／玩家</button><button class="ctl green" id="begin">🎮 開始遊戲</button><button class="ctl dice" id="roll" disabled aria-label="擲骰子"><span class="dice-icon" aria-hidden="true">🎲</span><span class="dice-label">擲骰子</span><span class="dice-value" id="face" aria-live="polite">—</span></button><button class="ctl blue" id="score">🏆 排名</button><button class="ctl" id="reset">↻ 重玩</button><button class="ctl purple" id="howto">📣 遊戲方式</button><button class="ctl blue tiny-control" id="fullscreen" type="button" title="全螢幕或離開全螢幕">⛶ 全螢幕</button><label for="fontStyle" style="font-weight:900;color:#83567a">字體</label><select id="fontStyle" class="font-picker" aria-label="字體造型"><option value="cute">🌼 可愛圓體</option><option value="standard">標準字體</option></select></section></div><div class="screen" id="overlay" hidden><section class="modal" role="dialog" aria-modal="true" aria-label="遊戲選單" id="modal"></section></div><script src="./campus-bank.js?v=20261119-subject"></script><script src="./campus-social-bank.js?v=20261119-subject"></script><script src="./math-questions.js?v=20261120-m2"></script><script src="./math9-questions.js?v=20261120-v1"></script><script>
+
+/* 2026-11-20 右側集中控制台：左側棋盤滿版 */
+@media(min-width:851px){
+ .app,.app:not(:fullscreen),.app:fullscreen{
+  display:grid!important;
+  grid-template-columns:minmax(0, 72fr) minmax(300px, 28fr)!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  align-items:stretch!important;
+  gap:10px!important;
+  width:100%!important;max-width:none!important;
+  height:100dvh!important;min-height:0!important;
+  overflow:hidden!important;padding:8px!important;
+  box-sizing:border-box!important
+ }
+ .app>.board,.app:fullscreen>.board{
+  grid-column:1!important;grid-row:1!important;
+  width:100%!important;height:100%!important;
+  max-width:none!important;max-height:none!important;
+  min-width:0!important;min-height:0!important;
+  aspect-ratio:auto!important;align-self:stretch!important;
+  border-radius:15px!important;overflow:hidden!important
+ }
+ .app>.board>#campusApprovedBoard,.app:fullscreen>.board>#campusApprovedBoard{
+  width:100%!important;height:100%!important;object-fit:fill!important
+ }
+ .app>.bottom-panels,.app:fullscreen>.bottom-panels{
+  grid-column:2!important;grid-row:1!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:stretch!important;
+  gap:9px!important;min-height:0!important;min-width:0!important;
+  height:100%!important;max-width:none!important;overflow:hidden!important
+ }
+ .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{
+  position:relative!important;inset:auto!important;
+  grid-row:auto!important;grid-column:auto!important;
+  order:0!important;flex:0 0 42%!important;
+  width:100%!important;height:auto!important;
+  max-width:none!important;max-height:none!important;
+  min-width:0!important;min-height:0!important;
+  margin:0!important;padding:10px!important;
+  overflow:hidden!important
+ }
+ .app>.bottom-panels>.blackboard .bb-body{
+  min-height:0!important;overflow:auto!important
+ }
+ .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{
+  position:relative!important;inset:auto!important;
+  grid-row:auto!important;grid-column:auto!important;
+  order:1!important;flex:1 1 auto!important;
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  align-content:start!important;align-items:stretch!important;
+  gap:8px!important;margin:0!important;padding:9px!important;
+  width:100%!important;height:auto!important;min-height:0!important;
+  max-width:none!important;max-height:none!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  border-radius:15px!important;box-sizing:border-box!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column{
+  display:flex!important;flex-direction:column!important;
+  min-width:0!important;width:auto!important;
+  gap:5px!important;padding:7px!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column h3{
+  font-size:clamp(13px,1vw,18px)!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.ctl{
+  min-width:0!important;min-height:38px!important;
+  font-size:clamp(12px,.85vw,17px)!important;
+  padding:6px 4px!important;white-space:normal!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.board-player-roster{
+  grid-template-columns:1fr!important;min-height:60px!important;
+  max-height:170px!important;overflow:auto!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.compact-bank{
+  font-size:clamp(12px,.85vw,16px)!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap{
+  flex-wrap:wrap!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck{
+  min-width:65px!important;flex:1 1 40%!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck b{
+  font-size:clamp(13px,1vw,19px)!important
+ }
+ .app>.bottom-panels>.toolbar .campus-control-column>.deck-wrap>.deck small{
+  font-size:11px!important
+ }
+}
+@media(min-width:851px) and (max-width:1150px){
+ .app,.app:not(:fullscreen),.app:fullscreen{
+  grid-template-columns:minmax(0, 66fr) minmax(290px, 34fr)!important
+ }
+}
+@media(max-width:850px){
+ .app,.app:not(:fullscreen),.app:fullscreen{
+  display:flex!important;flex-direction:column!important;
+  width:100%!important;height:auto!important;min-height:100dvh!important;
+  overflow:auto!important
+ }
+ .app>.board,.app:fullscreen>.board{
+  flex:0 0 auto!important;aspect-ratio:1672/941!important;
+  width:100%!important;height:auto!important
+ }
+ .app>.bottom-panels,.app:fullscreen>.bottom-panels{
+  display:flex!important;flex-direction:column!important;gap:9px!important;width:100%!important
+ }
+ .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{
+  order:0!important;position:relative!important;inset:auto!important;
+  width:100%!important;height:320px!important;min-height:260px!important;
+  grid-column:auto!important;grid-row:auto!important
+ }
+ .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{
+  order:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-column:auto!important;grid-row:auto!important;width:100%!important;
+  height:auto!important;max-height:none!important;overflow:visible!important
+ }
+}
+
+/* 最高優先級的新版雙欄：此處在全部舊版樣式之後，防止被覆蓋 */
+@media(min-width:851px){
+ .app>.bottom-panels,.app:fullscreen>.bottom-panels{display:flex!important;grid-template-columns:none!important;grid-template-rows:none!important}
+ .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{flex:0 0 42%!important;align-self:stretch!important}
+ .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{flex:1 1 0!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+</style></head><body><div class="app"><div class="board" id="board"><img class="campus-board-confirmed" id="campusApprovedBoard" src="./campus-board-illustration.jpg?v=right-sidebar-fix2" alt="校園大富翁20格精美插畫棋盤"><button class="compact-bank" type="button" aria-label="選擇自然或社會題庫" data-panel="bank"><strong id="bankSubjectLabel">📚 自然題庫</strong><span id="bankSummary">4 單元 · 12 活動</span><small>點此選擇活動</small></button><button class="hotspot players-hot" aria-label="從 FunDesk 選玩家" title="從 FunDesk 選玩家" data-panel="players"></button><button class="hotspot stats-hot" aria-label="查看玩家資訊" title="查看玩家資訊" data-panel="stats"></button><div class="board-ui deck-wrap" id="deckWrap"><button class="deck chance" id="chanceDeckBtn" aria-label="查看機會卡說明"><span class="tag">抽卡區</span><b>⭐ 機會</b><small id="chanceDeckText">點此查看機會卡說明</small></button><button class="deck fate" id="fateDeckBtn" aria-label="查看命運卡說明"><span class="tag">抽卡區</span><b>🎴 命運</b><small id="fateDeckText">點此查看命運卡說明</small></button></div><div class="board-player-roster" id="boardPlayerRoster" aria-live="polite" aria-label="遊戲玩家頭像與姓名"></div><div class="status-card"><div class="status-card-title">🌟 闖關進度</div><div id="turnSummary">請先選擇題庫與玩家</div><div id="briefRanking">玩家名單準備中</div></div><div id="tokens"></div></div><div class="bottom-panels"><section class="blackboard" id="questionBoard" aria-live="polite"><div class="bb-head"><span id="bbTitle">黑板作答區</span><span id="bbBadge">作答區</span></div><div class="bb-body" id="bbBody"></div><div class="bb-actions" id="bbActions"></div></section><section class="toolbar"><button class="ctl purple" id="setup">⚙ 題庫／玩家</button><button class="ctl green" id="begin">🎮 開始遊戲</button><button class="ctl dice" id="roll" disabled aria-label="擲骰子"><span class="dice-icon" aria-hidden="true">🎲</span><span class="dice-label">擲骰子</span><span class="dice-value" id="face" aria-live="polite">—</span></button><button class="ctl blue" id="score">🏆 排名</button><button class="ctl" id="reset">↻ 重玩</button><button class="ctl purple" id="howto">📣 遊戲方式</button><button class="ctl blue tiny-control" id="fullscreen" type="button" title="全螢幕或離開全螢幕">⛶ 全螢幕</button><label for="fontStyle" style="font-weight:900;color:#83567a">字體</label><select id="fontStyle" class="font-picker" aria-label="字體造型"><option value="cute">🌼 可愛圓體</option><option value="standard">標準字體</option></select></section></div><div class="screen" id="overlay" hidden><section class="modal" role="dialog" aria-modal="true" aria-label="遊戲選單" id="modal"></section></div><script src="./campus-bank.js?v=20261119-subject"></script><script src="./campus-social-bank.js?v=20261119-subject"></script><script src="./math-questions.js?v=20261120-m2"></script><script src="./math9-questions.js?v=20261120-v1"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),rand=a=>a[Math.floor(Math.random()*a.length)],uuid=()=>globalThis.crypto?.randomUUID?.()||String(Date.now())+'-'+Math.random();
 // Coordinates refer to the user's exact 1672 × 941 original illustrated board.
