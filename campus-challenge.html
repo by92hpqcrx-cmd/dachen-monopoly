@@ -751,6 +751,87 @@ body.campus-answer-focus #questionBoard{position:fixed!important;inset:0!importa
  .app>.bottom-panels>.blackboard,.app:fullscreen>.bottom-panels>.blackboard{flex:0 0 42%!important;align-self:stretch!important}
  .app>.bottom-panels>.toolbar,.app:fullscreen>.bottom-panels>.toolbar{flex:1 1 0!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
+
+/* 2026-11-20: 全寬功能儀表板 — 大骰子優先，三區填滿右側 */
+.app>.bottom-panels>.toolbar.campus-control-dashboard,
+.app:fullscreen>.bottom-panels>.toolbar.campus-control-dashboard{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ grid-template-rows:minmax(172px,1.5fr) minmax(132px,1fr) minmax(104px,.8fr)!important;
+ align-content:stretch!important;align-items:stretch!important;
+ gap:8px!important;padding:9px!important;
+ width:100%!important;max-width:none!important;min-width:0!important;
+ height:100%!important;max-height:none!important;overflow-x:hidden!important;
+ overflow-y:auto!important;box-sizing:border-box!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-control-column{
+ min-width:0!important;min-height:0!important;max-width:none!important;
+ width:100%!important;margin:0!important;padding:9px!important;
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;
+ gap:5px!important;box-sizing:border-box!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice{
+ grid-column:1/-1!important;grid-row:1!important;
+ background:linear-gradient(145deg,#fff4c5,#f7d18b)!important;border:3px solid #e1aa4a!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings{grid-column:1!important;grid-row:2!important}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-cards{grid-column:2!important;grid-row:2!important}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-tools{
+ grid-column:1/-1!important;grid-row:3!important;
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-template-rows:auto 1fr auto!important;gap:5px!important;align-content:stretch!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-tools>h3{
+ grid-column:1/-1!important;grid-row:1!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-tools>.campus-font-row{
+ grid-column:1/-1!important;grid-row:3!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll{
+ display:flex!important;flex:1 1 auto!important;flex-direction:row!important;
+ align-items:center!important;justify-content:center!important;
+ width:100%!important;height:100%!important;min-height:115px!important;
+ gap:clamp(8px,1.8vw,22px)!important;border-width:4px!important;
+ border-radius:19px!important;font-size:clamp(19px,1.7vw,31px)!important;
+ box-shadow:0 6px 0 #bf792c,0 10px 16px #a2653660!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll .dice-icon{
+ font-size:clamp(58px,7vw,112px)!important;line-height:1!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll .dice-label{
+ font-size:clamp(20px,2vw,34px)!important;font-weight:1000!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll .dice-value{
+ font-size:clamp(26px,2.6vw,45px)!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-cards>.deck-wrap{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ flex:1 1 auto!important;gap:6px!important;width:100%!important;
+ height:100%!important;min-height:90px!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-cards>.deck-wrap>.deck{
+ width:100%!important;min-height:80px!important;height:100%!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings>.ctl{
+ flex:1 1 auto!important;min-height:35px!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-tools>.ctl{
+ min-height:38px!important;height:100%!important
+}
+@media(max-width:850px){
+ .app>.bottom-panels>.toolbar.campus-control-dashboard,
+ .app:fullscreen>.bottom-panels>.toolbar.campus-control-dashboard{
+  height:auto!important;min-height:520px!important;
+  grid-template-rows:minmax(170px,auto) minmax(180px,auto) auto!important;
+  overflow:visible!important
+ }
+}
+@media(max-width:470px){
+ .app>.bottom-panels>.toolbar.campus-control-dashboard{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ .app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll .dice-icon{font-size:60px!important}
+ .app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll .dice-label{font-size:21px!important}
+}
 </style></head><body><div class="app"><div class="board" id="board"><img class="campus-board-confirmed" id="campusApprovedBoard" src="./campus-board-illustration.jpg?v=right-sidebar-fix2" alt="校園大富翁20格精美插畫棋盤"><button class="compact-bank" type="button" aria-label="選擇自然或社會題庫" data-panel="bank"><strong id="bankSubjectLabel">📚 自然題庫</strong><span id="bankSummary">4 單元 · 12 活動</span><small>點此選擇活動</small></button><button class="hotspot players-hot" aria-label="從 FunDesk 選玩家" title="從 FunDesk 選玩家" data-panel="players"></button><button class="hotspot stats-hot" aria-label="查看玩家資訊" title="查看玩家資訊" data-panel="stats"></button><div class="board-ui deck-wrap" id="deckWrap"><button class="deck chance" id="chanceDeckBtn" aria-label="查看機會卡說明"><span class="tag">抽卡區</span><b>⭐ 機會</b><small id="chanceDeckText">點此查看機會卡說明</small></button><button class="deck fate" id="fateDeckBtn" aria-label="查看命運卡說明"><span class="tag">抽卡區</span><b>🎴 命運</b><small id="fateDeckText">點此查看命運卡說明</small></button></div><div class="board-player-roster" id="boardPlayerRoster" aria-live="polite" aria-label="遊戲玩家頭像與姓名"></div><div class="status-card"><div class="status-card-title">🌟 闖關進度</div><div id="turnSummary">請先選擇題庫與玩家</div><div id="briefRanking">玩家名單準備中</div></div><div id="tokens"></div></div><div class="bottom-panels"><section class="blackboard" id="questionBoard" aria-live="polite"><div class="bb-head"><span id="bbTitle">黑板作答區</span><span id="bbBadge">作答區</span></div><div class="bb-body" id="bbBody"></div><div class="bb-actions" id="bbActions"></div></section><section class="toolbar"><button class="ctl purple" id="setup">⚙ 題庫／玩家</button><button class="ctl green" id="begin">🎮 開始遊戲</button><button class="ctl dice" id="roll" disabled aria-label="擲骰子"><span class="dice-icon" aria-hidden="true">🎲</span><span class="dice-label">擲骰子</span><span class="dice-value" id="face" aria-live="polite">—</span></button><button class="ctl blue" id="score">🏆 排名</button><button class="ctl" id="reset">↻ 重玩</button><button class="ctl purple" id="howto">📣 遊戲方式</button><button class="ctl blue tiny-control" id="fullscreen" type="button" title="全螢幕或離開全螢幕">⛶ 全螢幕</button><label for="fontStyle" style="font-weight:900;color:#83567a">字體</label><select id="fontStyle" class="font-picker" aria-label="字體造型"><option value="cute">🌼 可愛圓體</option><option value="standard">標準字體</option></select></section></div><div class="screen" id="overlay" hidden><section class="modal" role="dialog" aria-modal="true" aria-label="遊戲選單" id="modal"></section></div><script src="./campus-bank.js?v=20261119-subject"></script><script src="./campus-social-bank.js?v=20261119-subject"></script><script src="./math-questions.js?v=20261120-m2"></script><script src="./math9-questions.js?v=20261120-v1"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),rand=a=>a[Math.floor(Math.random()*a.length)],uuid=()=>globalThis.crypto?.randomUUID?.()||String(Date.now())+'-'+Math.random();
@@ -779,13 +860,16 @@ setTimeout(()=>{
  for(const el of [els.bank,els.roster])if(el)hiddenStore.append(el);
  const oldFont=bar.querySelector('label[for="fontStyle"]');
  const groups=[
-  {title:'🎮 遊戲設定',items:[els.setup,els.begin,els.howto]},
-  {title:'🎲 擲骰與卡片',items:[els.roll,els.decks]},
-  {title:'🏆 排名與工具',items:[els.score,els.reset,els.fullscreen]}
+  {name:'dice',title:'🎲 擲骰子',items:[els.roll]},
+  {name:'settings',title:'🎮 遊戲設定',items:[els.setup,els.begin,els.howto]},
+  {name:'cards',title:'⭐ 機會與命運',items:[els.decks]},
+  {name:'tools',title:'🏆 排名與工具',items:[els.score,els.reset,els.fullscreen]}
  ];
  bar.replaceChildren();
+ bar.classList.add('campus-control-dashboard');
  groups.forEach(group=>{
-  const col=document.createElement('section');col.className='campus-control-column';
+  const col=document.createElement('section');
+  col.className='campus-control-column campus-zone-'+group.name;
   const head=document.createElement('h3');head.textContent=group.title;col.append(head);
   group.items.forEach(item=>{if(item)col.append(item)});
   bar.append(col);
@@ -793,7 +877,7 @@ setTimeout(()=>{
  const fontRow=document.createElement('div');fontRow.className='campus-font-row';
  if(oldFont)fontRow.append(oldFont);
  if(els.fontStyle)fontRow.append(els.fontStyle);
- bar.lastElementChild.append(fontRow);
+ bar.querySelector('.campus-zone-tools').append(fontRow);
  bar.append(hiddenStore);
 },0);
 const P_ILLUSTRATION=[[25.1,24.5],[35.4,24.5],[45.7,24.5],[61.5,24.5],[73,24.5],[85,24.5],[87.9,39.5],[88.7,52.8],[87.9,66.1],[82.2,87.5],[69.7,87.5],[58.1,87.5],[46.7,87.5],[36.3,87.5],[25.5,87.5],[16.9,87.5],[12,72],[11.3,59],[11.8,46],[13.1,34]];
