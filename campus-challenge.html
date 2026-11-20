@@ -771,9 +771,14 @@ setTimeout(()=>{
  els.bank=board.querySelector('.compact-bank');
  els.decks=board.querySelector('.deck-wrap');
  els.roster=board.querySelector('.board-player-roster');
+ // 保留相關 DOM 節點供原有程式更新資料，但不再顯示重複欄目。
+ const hiddenStore=document.createElement('div');
+ hiddenStore.hidden=true;
+ hiddenStore.style.setProperty('display','none','important');
+ hiddenStore.setAttribute('aria-hidden','true');
+ for(const el of [els.bank,els.roster])if(el)hiddenStore.append(el);
  const oldFont=bar.querySelector('label[for="fontStyle"]');
  const groups=[
-  {title:'👩‍🎓 玩家與題庫',items:[els.roster,els.bank]},
   {title:'🎮 遊戲設定',items:[els.setup,els.begin,els.howto]},
   {title:'🎲 擲骰與卡片',items:[els.roll,els.decks]},
   {title:'🏆 排名與工具',items:[els.score,els.reset,els.fullscreen]}
@@ -789,6 +794,7 @@ setTimeout(()=>{
  if(oldFont)fontRow.append(oldFont);
  if(els.fontStyle)fontRow.append(els.fontStyle);
  bar.lastElementChild.append(fontRow);
+ bar.append(hiddenStore);
 },0);
 const P_ILLUSTRATION=[[25.1,24.5],[35.4,24.5],[45.7,24.5],[61.5,24.5],[73,24.5],[85,24.5],[87.9,39.5],[88.7,52.8],[87.9,66.1],[82.2,87.5],[69.7,87.5],[58.1,87.5],[46.7,87.5],[36.3,87.5],[25.5,87.5],[16.9,87.5],[12,72],[11.3,59],[11.8,46],[13.1,34]];
 const icons=['🔵','🔴','🟡','🟢','🟣','🩷'];
