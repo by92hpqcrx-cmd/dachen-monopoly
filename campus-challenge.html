@@ -886,6 +886,40 @@ body.campus-answer-focus.campus-explanation-focus #questionBoard .bb-btn{
  min-height:clamp(48px,7vh,72px)!important;
  padding:8px 30px!important;font-size:clamp(20px,2.2vw,35px)!important
 }
+
+/* 遊戲設定：左兩列題庫玩家／遊戲方式，右一欄大型開始遊戲 */
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ grid-template-rows:auto minmax(45px,1fr) minmax(45px,1fr)!important;
+ gap:7px!important;align-items:stretch!important;align-content:stretch!important;
+ min-width:0!important;min-height:0!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings>h3{
+ grid-column:1/-1!important;grid-row:1!important;margin:0 0 2px!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings>#setup{
+ grid-column:1!important;grid-row:2!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings>#howto{
+ grid-column:1!important;grid-row:3!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings>#begin{
+ grid-column:2!important;grid-row:2/4!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ height:100%!important;min-height:98px!important;
+ background:linear-gradient(160deg,#d9ffb9,#6ed09a)!important;
+ font-size:clamp(16px,1.3vw,23px)!important;
+ padding:8px!important;line-height:1.25!important;
+ border-radius:15px!important;white-space:normal!important;text-align:center!important
+}
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings>#setup,
+.app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-settings>#howto{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ height:100%!important;min-height:44px!important;
+ font-size:clamp(12px,.92vw,17px)!important;
+ padding:5px 3px!important;white-space:normal!important;text-align:center!important
+}
 </style></head><body><div class="app"><div class="board" id="board"><img class="campus-board-confirmed" id="campusApprovedBoard" src="./campus-board-illustration.jpg?v=right-sidebar-fix2" alt="校園大富翁20格精美插畫棋盤"><button class="compact-bank" type="button" aria-label="選擇自然或社會題庫" data-panel="bank"><strong id="bankSubjectLabel">📚 自然題庫</strong><span id="bankSummary">4 單元 · 12 活動</span><small>點此選擇活動</small></button><button class="hotspot players-hot" aria-label="從 FunDesk 選玩家" title="從 FunDesk 選玩家" data-panel="players"></button><button class="hotspot stats-hot" aria-label="查看玩家資訊" title="查看玩家資訊" data-panel="stats"></button><div class="board-ui deck-wrap" id="deckWrap"><button class="deck chance" id="chanceDeckBtn" aria-label="查看機會卡說明"><span class="tag">抽卡區</span><b>⭐ 機會</b><small id="chanceDeckText">點此查看機會卡說明</small></button><button class="deck fate" id="fateDeckBtn" aria-label="查看命運卡說明"><span class="tag">抽卡區</span><b>🎴 命運</b><small id="fateDeckText">點此查看命運卡說明</small></button></div><div class="board-player-roster" id="boardPlayerRoster" aria-live="polite" aria-label="遊戲玩家頭像與姓名"></div><div class="status-card"><div class="status-card-title">🌟 闖關進度</div><div id="turnSummary">請先選擇題庫與玩家</div><div id="briefRanking">玩家名單準備中</div></div><div id="tokens"></div></div><div class="bottom-panels"><section class="blackboard" id="questionBoard" aria-live="polite"><div class="bb-head"><span id="bbTitle">黑板作答區</span><span id="bbBadge">作答區</span></div><div class="bb-body" id="bbBody"></div><div class="bb-actions" id="bbActions"></div></section><section class="toolbar"><button class="ctl purple" id="setup">⚙ 題庫／玩家</button><button class="ctl green" id="begin">🎮 開始遊戲</button><button class="ctl dice" id="roll" disabled aria-label="擲骰子"><span class="dice-icon" aria-hidden="true">🎲</span><span class="dice-label">擲骰子</span><span class="dice-value" id="face" aria-live="polite">—</span></button><button class="ctl blue" id="score">🏆 排名</button><button class="ctl" id="reset">↻ 重玩</button><button class="ctl purple" id="howto">📣 遊戲方式</button><button class="ctl blue tiny-control" id="fullscreen" type="button" title="全螢幕或離開全螢幕">⛶ 全螢幕</button><label for="fontStyle" style="font-weight:900;color:#83567a">字體</label><select id="fontStyle" class="font-picker" aria-label="字體造型"><option value="cute">🌼 可愛圓體</option><option value="standard">標準字體</option></select></section></div><div class="screen" id="overlay" hidden><section class="modal" role="dialog" aria-modal="true" aria-label="遊戲選單" id="modal"></section></div><script src="./campus-bank.js?v=20261119-subject"></script><script src="./campus-social-bank.js?v=20261119-subject"></script><script src="./math-questions.js?v=20261120-m2"></script><script src="./math9-questions.js?v=20261120-v1"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),rand=a=>a[Math.floor(Math.random()*a.length)],uuid=()=>globalThis.crypto?.randomUUID?.()||String(Date.now())+'-'+Math.random();
