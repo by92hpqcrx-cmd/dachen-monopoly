@@ -832,6 +832,60 @@ body.campus-answer-focus #questionBoard{position:fixed!important;inset:0!importa
  .app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll .dice-icon{font-size:60px!important}
  .app>.bottom-panels>.toolbar.campus-control-dashboard>.campus-zone-dice>#roll .dice-label{font-size:21px!important}
 }
+
+/* 答完題後：獨立詳解畫面，不顯示選項、不要捲軸，自動縮放內文 */
+body.campus-answer-focus.campus-explanation-focus,
+body.campus-answer-focus.campus-explanation-focus #questionBoard{
+ overflow:hidden!important;
+}
+body.campus-answer-focus.campus-explanation-focus #questionBoard{
+ padding:clamp(8px,1.3vw,18px)!important;gap:6px!important;
+}
+body.campus-answer-focus.campus-explanation-focus #questionBoard .bb-head{
+ flex:0 0 auto!important;font-size:clamp(20px,2.2vw,38px)!important;
+ margin-bottom:0!important;line-height:1.12!important
+}
+body.campus-answer-focus.campus-explanation-focus #questionBoard .bb-body{
+ flex:1 1 0!important;min-height:0!important;overflow:hidden!important;
+ padding:clamp(8px,1.1vw,16px)!important;
+ font-size:clamp(18px,2vw,30px)!important;line-height:1.3!important
+}
+body.campus-answer-focus.campus-explanation-focus .campus-explanation-content{
+ display:flex;flex-direction:column;gap:clamp(7px,.95vh,14px);
+ width:100%;height:auto;min-height:0;margin:0;
+}
+body.campus-answer-focus.campus-explanation-focus .campus-explanation-question{
+ margin:0!important;font-size:clamp(22px,2.5vw,42px)!important;
+ line-height:1.22!important;color:#fff7c1!important
+}
+body.campus-answer-focus.campus-explanation-focus .campus-explanation-outcome{
+ font-weight:1000;font-size:clamp(25px,2.9vw,50px)!important;
+ color:#ffe28f;line-height:1.16
+}
+body.campus-answer-focus.campus-explanation-focus .campus-explanation-answer{
+ padding:clamp(7px,.9vw,14px);background:#ecfff1;color:#245a32;
+ border-radius:12px;font-weight:900;font-size:clamp(20px,2.1vw,34px)!important
+}
+body.campus-answer-focus.campus-explanation-focus .campus-explanation-detail{
+ padding:clamp(9px,1.2vw,18px)!important;border:2px solid #a8d6a5;
+ border-radius:13px;background:#153a21;color:#f5fff0;
+ font-size:clamp(20px,2vw,32px)!important;line-height:1.36!important;
+ overflow-wrap:anywhere
+}
+body.campus-answer-focus.campus-explanation-focus .campus-explanation-detail strong{
+ color:#ffe28f;font-size:1.1em
+}
+body.campus-answer-focus.campus-explanation-focus .campus-explanation-detail p{
+ margin:5px 0 0!important;white-space:pre-wrap
+}
+body.campus-answer-focus.campus-explanation-focus #questionBoard .bb-actions{
+ flex:0 0 auto!important;margin:0!important;padding:4px!important;
+ max-height:none!important;overflow:visible!important
+}
+body.campus-answer-focus.campus-explanation-focus #questionBoard .bb-btn{
+ min-height:clamp(48px,7vh,72px)!important;
+ padding:8px 30px!important;font-size:clamp(20px,2.2vw,35px)!important
+}
 </style></head><body><div class="app"><div class="board" id="board"><img class="campus-board-confirmed" id="campusApprovedBoard" src="./campus-board-illustration.jpg?v=right-sidebar-fix2" alt="校園大富翁20格精美插畫棋盤"><button class="compact-bank" type="button" aria-label="選擇自然或社會題庫" data-panel="bank"><strong id="bankSubjectLabel">📚 自然題庫</strong><span id="bankSummary">4 單元 · 12 活動</span><small>點此選擇活動</small></button><button class="hotspot players-hot" aria-label="從 FunDesk 選玩家" title="從 FunDesk 選玩家" data-panel="players"></button><button class="hotspot stats-hot" aria-label="查看玩家資訊" title="查看玩家資訊" data-panel="stats"></button><div class="board-ui deck-wrap" id="deckWrap"><button class="deck chance" id="chanceDeckBtn" aria-label="查看機會卡說明"><span class="tag">抽卡區</span><b>⭐ 機會</b><small id="chanceDeckText">點此查看機會卡說明</small></button><button class="deck fate" id="fateDeckBtn" aria-label="查看命運卡說明"><span class="tag">抽卡區</span><b>🎴 命運</b><small id="fateDeckText">點此查看命運卡說明</small></button></div><div class="board-player-roster" id="boardPlayerRoster" aria-live="polite" aria-label="遊戲玩家頭像與姓名"></div><div class="status-card"><div class="status-card-title">🌟 闖關進度</div><div id="turnSummary">請先選擇題庫與玩家</div><div id="briefRanking">玩家名單準備中</div></div><div id="tokens"></div></div><div class="bottom-panels"><section class="blackboard" id="questionBoard" aria-live="polite"><div class="bb-head"><span id="bbTitle">黑板作答區</span><span id="bbBadge">作答區</span></div><div class="bb-body" id="bbBody"></div><div class="bb-actions" id="bbActions"></div></section><section class="toolbar"><button class="ctl purple" id="setup">⚙ 題庫／玩家</button><button class="ctl green" id="begin">🎮 開始遊戲</button><button class="ctl dice" id="roll" disabled aria-label="擲骰子"><span class="dice-icon" aria-hidden="true">🎲</span><span class="dice-label">擲骰子</span><span class="dice-value" id="face" aria-live="polite">—</span></button><button class="ctl blue" id="score">🏆 排名</button><button class="ctl" id="reset">↻ 重玩</button><button class="ctl purple" id="howto">📣 遊戲方式</button><button class="ctl blue tiny-control" id="fullscreen" type="button" title="全螢幕或離開全螢幕">⛶ 全螢幕</button><label for="fontStyle" style="font-weight:900;color:#83567a">字體</label><select id="fontStyle" class="font-picker" aria-label="字體造型"><option value="cute">🌼 可愛圓體</option><option value="standard">標準字體</option></select></section></div><div class="screen" id="overlay" hidden><section class="modal" role="dialog" aria-modal="true" aria-label="遊戲選單" id="modal"></section></div><script src="./campus-bank.js?v=20261119-subject"></script><script src="./campus-social-bank.js?v=20261119-subject"></script><script src="./math-questions.js?v=20261120-m2"></script><script src="./math9-questions.js?v=20261120-v1"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),rand=a=>a[Math.floor(Math.random()*a.length)],uuid=()=>globalThis.crypto?.randomUUID?.()||String(Date.now())+'-'+Math.random();
@@ -975,13 +1029,53 @@ function renderBoardPlayers(){
 }
 function updateTokens(){renderBoardPlayers();const root=$('tokens');root.innerHTML='';const byPos={};players.filter(p=>p.steps>0&&!p.rank).forEach(p=>{const idx=(p.steps-1)%20;(byPos[idx]??=[]).push(p)});Object.entries(byPos).forEach(([key,arr])=>{const pos=P_ILLUSTRATION[Number(key)];arr.forEach((p,j)=>{const n=document.createElement('div');n.className='token'+(players[active]===p&&phase==='playing'?' current':'');n.style.left=(pos[0]+(j%3-1)*1.7)+'%';n.style.top=(pos[1]+(Math.floor(j/3)-.1)*3.5)+'%';n.style.borderColor=['#3baae4','#fa4d6b','#f7b32b','#7cc858','#ac76df','#ef7ca3'][players.indexOf(p)];n.innerHTML='<span class="campus-token-avatar">'+(p.avatar?'<img src="'+html(p.avatar)+'" alt="'+html(p.name)+'" onerror="this.style.display=\'none\'">':'<span>'+icons[players.indexOf(p)]+'</span>')+'</span><span class="campus-token-name">'+html(p.name)+'</span>';n.title=p.name;root.append(n)})})}
 window.refreshCampusTokens=updateTokens;
-function next(){document.body.classList.remove('campus-answer-focus');busy=false;close();if(placed.length===players.length){end();return}do{active=(active+1)%players.length}while(players[active].rank);phase='playing';$('roll').disabled=false;setStatus('輪到 '+players[active].name+' 擲骰子');setBlackboard('黑板作答區','<h3>準備擲骰</h3><p>輪到 <span class="bb-highlight">'+html(players[active].name)+'</span> 行動，請按骰子前進。</p>',[], '進行中');updateTokens()}
+function next(){document.body.classList.remove('campus-answer-focus','campus-explanation-focus');busy=false;close();if(placed.length===players.length){end();return}do{active=(active+1)%players.length}while(players[active].rank);phase='playing';$('roll').disabled=false;setStatus('輪到 '+players[active].name+' 擲骰子');setBlackboard('黑板作答區','<h3>準備擲骰</h3><p>輪到 <span class="bb-highlight">'+html(players[active].name)+'</span> 行動，請按骰子前進。</p>',[], '進行中');updateTokens()}
 function landed(){const p=players[active];if(p.steps>20){p.rank=placed.length+1;placed.push(p.id);updateTokens();popup('<h2>🏁 抵達終點！</h2><p style="font-size:21px"><strong>'+html(p.name)+'</strong> 完成一圈，獲得第 '+p.rank+' 名！</p>');footer([normalAction('下一位玩家',next)]);return}const index=(p.steps-1)%20;const tile=tiles[index];if(tile==='機會'||tile==='命運')drawCard(p,tile);else ask(p,tile)}
 function drawCard(p,t){const c=rand(t==='機會'?chance:fate);p.score=Math.max(0,p.score+c[2]);if(c[3]){p.steps=Math.max(0,p.steps+c[3])}updateTokens();const deckType=t==='機會'?'機會':'命運';setDeckText(deckType,'最新：'+c[0]+'｜'+c[1]);setBlackboard(t==='機會'?'⭐ 抽到機會卡':'🎴 抽到命運卡','<h3>'+html(c[0])+'</h3><p class="bb-highlight">'+html(c[1])+'</p><p>目前 <strong>'+html(p.name)+'</strong> 的遊戲分：'+p.score+' 分。</p><p class="bb-note">抽卡效果已套用完成，按「下一位玩家」繼續。</p>',[bbAction('下一位玩家',next,'green')],t+'卡')}
-function ask(p,cl){document.body.classList.add('campus-answer-focus');const pool=selectedQuestions();let filtered=pool.filter(q=>!used.has(q.id));if(!filtered.length){used.clear();filtered=pool}if(!filtered.length){setBlackboard('題庫暫無可用題目','<h3>目前沒有可用題目</h3><p>請重新選擇活動後再開始遊戲。</p>',[bbAction('下一位玩家',next,'green')],'題目區');return}const q=rand(filtered);used.add(q.id);busy=false;setBlackboard((subject==='social'?'🌏 ':subject==='math'?'🔢 ':'📗 ')+classDisplay(p)+(subject==='social'?'社會挑戰':subject==='math'?'數學挑戰':'自然挑戰'),'<h3>'+html(q.text)+'</h3><p class="bb-note">作答者：'+html(p.name)+'｜棋盤關卡：'+html(String(cl))+'｜第 '+q.unit+' 單元・活動 '+(q.activity||'未分類')+'</p><div class="bb-answers" id="bbAnswers">'+q.options.map((o,i)=>'<button class="bb-answer" data-answer="'+i+'">'+String.fromCharCode(65+i)+'. '+html(o)+'</button>').join('')+'</div><div id="bbFeedback"></div>',[], '題目區');document.querySelectorAll('#bbAnswers [data-answer]').forEach(b=>b.onclick=()=>{if(busy)return;busy=true;const i=Number(b.dataset.answer),ok=i===q.answer;p.score+=ok?10:0;document.querySelectorAll('#bbAnswers [data-answer]').forEach(x=>{x.disabled=true;if(Number(x.dataset.answer)===q.answer)x.classList.add('good');else if(Number(x.dataset.answer)===i)x.classList.add('bad')});$('bbFeedback').innerHTML='<div class="feedback"><strong>'+(ok?'🎉 答對了！+10 遊戲分':'💪 再接再厲！')+'</strong><p>正確答案：'+html(q.options[q.answer])+'</p><p>詳解：'+html(q.explanation)+'</p></div>';const act=$('bbActions');act.innerHTML='';act.append(bbAction('下一位玩家',()=>{busy=false;next()},'green'));setStatus(p.name+(ok?' 答對 +10 遊戲分':' 答錯，沒有加分'))})}
+function ask(p,cl){document.body.classList.remove('campus-explanation-focus');document.body.classList.add('campus-answer-focus');const pool=selectedQuestions();let filtered=pool.filter(q=>!used.has(q.id));if(!filtered.length){used.clear();filtered=pool}if(!filtered.length){setBlackboard('題庫暫無可用題目','<h3>目前沒有可用題目</h3><p>請重新選擇活動後再開始遊戲。</p>',[bbAction('下一位玩家',next,'green')],'題目區');return}const q=rand(filtered);used.add(q.id);busy=false;setBlackboard((subject==='social'?'🌏 ':subject==='math'?'🔢 ':'📗 ')+classDisplay(p)+(subject==='social'?'社會挑戰':subject==='math'?'數學挑戰':'自然挑戰'),'<h3>'+html(q.text)+'</h3><p class="bb-note">作答者：'+html(p.name)+'｜棋盤關卡：'+html(String(cl))+'｜第 '+q.unit+' 單元・活動 '+(q.activity||'未分類')+'</p><div class="bb-answers" id="bbAnswers">'+q.options.map((o,i)=>'<button class="bb-answer" data-answer="'+i+'">'+String.fromCharCode(65+i)+'. '+html(o)+'</button>').join('')+'</div><div id="bbFeedback"></div>',[], '題目區');document.querySelectorAll('#bbAnswers [data-answer]').forEach(b=>b.onclick=()=>{
+ if(busy)return;
+ busy=true;
+ const i=Number(b.dataset.answer),ok=i===q.answer;
+ p.score+=ok?10:0;
+ document.body.classList.add('campus-explanation-focus');
+ const body=$('bbBody');
+ body.innerHTML='<div class="campus-explanation-content" id="campusExplanationContent">'
+   +'<h3 class="campus-explanation-question">'+html(q.text)+'</h3>'
+   +'<div class="campus-explanation-outcome">'+(ok?'🎉 答對了！+10 遊戲分':'💪 再接再厲！')+'</div>'
+   +'<div class="campus-explanation-answer"><strong>正確答案：</strong>'+html(String.fromCharCode(65+q.answer)+'. '+q.options[q.answer])+'</div>'
+   +'<div class="campus-explanation-detail"><strong>📖 詳解</strong><p>'+html(q.explanation||'原題庫未提供詳解。')+'</p></div>'
+   +'</div>';
+ $('bbBadge').textContent='答題詳解';
+ const act=$('bbActions');act.replaceChildren();
+ act.append(bbAction('下一位玩家',()=>{busy=false;next()},'green'));
+ setStatus(p.name+(ok?' 答對 +10 遊戲分':' 答錯，沒有加分'));
+ requestAnimationFrame(fitCampusExplanation);
+})}
+function fitCampusExplanation(){
+ if(!document.body.classList.contains('campus-explanation-focus'))return;
+ const body=$('bbBody'),content=$('campusExplanationContent');
+ if(!body||!content)return;
+ body.scrollTop=0;
+ content.style.zoom='1';
+ let factor=1;
+ // 縮放整個詳解內容，而不是讓學生向下捲動。
+ for(let j=0;j<64&&body.scrollHeight>body.clientHeight+2;j++){
+  factor=Math.max(.25,factor-.0125);
+  content.style.zoom=String(factor);
+ }
+ body.scrollTop=0;
+}
+let explanationFitObserver;
+if(window.ResizeObserver){
+ explanationFitObserver=new ResizeObserver(()=>{
+  if(document.body.classList.contains('campus-explanation-focus'))requestAnimationFrame(fitCampusExplanation);
+ });
+ explanationFitObserver.observe($('questionBoard'));
+}
+
 function start(){if(phase!=='setup')return;if(players.length<2||players.length>6)return alert('請先選擇 2～6 名 FunDesk 學生');if(!classes.length||!token)return alert('請從 FunDesk 教師工作台開啟，才能使用班級學生資料');if(!picked.length||!bankCount())return alert('題庫尚未選好或所選活動沒有題目');gameId=uuid();used.clear();placed=[];rewardSent=false;phase='playing';active=0;players.forEach(p=>{p.steps=0;p.score=0;p.rank=0});$('roll').disabled=false;setStatus('準備好了！由 '+players[0].name+' 開始');setBlackboard('黑板作答區','<h3>闖關開始！</h3><p>目前輪到 <span class="bb-highlight">'+html(players[0].name)+'</span>，請按下骰子開始前進。</p><p class="bb-note">停在班級格會在這裡答題；停在機會或命運格會在這裡顯示抽卡結果。</p>',[], '進行中');banner('闖關開始！');updateTokens()}
 function end(){phase='ended';$('roll').disabled=true;const win=placed.slice(0,players.length===2?1:2).map((id,i)=>{const p=players.find(q=>q.id===id);return {id:p.id,code:p.code,name:p.name,no:p.no,rank:i+1,delta:i?3:5}});popup('<h2>🏆 校園闖關完成！</h2><p>大家都完成一圈了，恭喜！</p>'+win.map(w=>'<div class="item">🥇 第'+w.rank+'名 '+html(classDisplay(players.find(p=>p.code===w.code&&p.id===w.id)||w)+' '+w.name)+'<strong>FunDesk +'+w.delta+' 點</strong></div>').join('')+'<p class="subtle">送交老師端後，需要由老師再次確認；未確認前不會加點。</p>');footer([normalAction('送交教師確認頒獎',()=>{if(rewardSent)return;rewardSent=true;window.opener?.postMessage({kind:'fundesk-monopoly-award',token,gameId,players:players.map(p=>({id:p.id,code:p.code,place:p.rank})),winners:win},location.origin);setStatus('已送交 FunDesk，等待教師確認');close()},'green'),normalAction('暫不頒獎',close,'purple')])}
-function reset(){document.body.classList.remove('campus-answer-focus');if(phase==='playing'&&!confirm('確定放棄本局，重新設定玩家？'))return;busy=false;close();phase='setup';players=[];placed=[];rewardSent=false;active=0;$('face').textContent='—';$('roll').disabled=true;updateTokens();setStatus('請選科目、單元、活動及 2～6 位玩家');setBlackboardIdle();setDeckText('機會','點此查看機會卡說明');setDeckText('命運','點此查看命運卡說明')}
+function reset(){document.body.classList.remove('campus-answer-focus','campus-explanation-focus');if(phase==='playing'&&!confirm('確定放棄本局，重新設定玩家？'))return;busy=false;close();phase='setup';players=[];placed=[];rewardSent=false;active=0;$('face').textContent='—';$('roll').disabled=true;updateTokens();setStatus('請選科目、單元、活動及 2～6 位玩家');setBlackboardIdle();setDeckText('機會','點此查看機會卡說明');setDeckText('命運','點此查看命運卡說明')}
 function loadRoster(){if(!token||!window.opener)return;window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==window.opener||e.data?.token!==token)return;if(e.data.kind==='fundesk-monopoly-roster'){classes=(e.data.classes||[]).filter(c=>Array.isArray(c.students)).map(c=>({code:String(c.code),label:String(c.label),students:c.students.map(s=>({id:String(s.id),name:String(s.name),no:Number(s.no),avatar:String(s.avatar||'')}))}));setStatus('已連接 FunDesk '+classes.length+' 班，請選擇玩家')}else if(e.data.kind==='fundesk-monopoly-award-result'){alert(e.data.ok?'老師已確認將得獎點數寫入 FunDesk！':'尚未完成頒獎：'+(e.data.error||'教師未確認'));if(!e.data.ok)rewardSent=false}});window.opener.postMessage({kind:'fundesk-monopoly-ready',token},location.origin)}
 // 使用既有 Supabase 公開讀取權限；沒有任何私密 service_role key。
 async function cloudBank(){
